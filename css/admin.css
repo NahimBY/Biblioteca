@@ -166,7 +166,14 @@ header {
   width: calc(100% - 24%);
   height: 100%;
   right: 0;
+}
+
+.contentScroll {
   overflow: hidden;
+}
+
+.content-Stadistics {
+  overflow-y: scroll !important;
 }
 
 .card-phoneView {
@@ -189,9 +196,6 @@ header {
   width: 100%;
 }
 
-.targetStadistics {
-  height: 550px;
-}
 
 table {
   width: 100%;
@@ -1507,4 +1511,55 @@ table tbody td:last-child {
 
 .suggestion-item:hover {
   background-color: #f0f0f0;
+}
+
+.searchingInputs {
+  position: relative;
+  display: flex;
+  align-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.inputChartMonth {
+  width: 120px;
+  height: 40px;
+  padding-left: .5rem;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  outline: none;
+  background-color: #f3f3f4;
+  color: #0d0c22;
+  transition: 0.3s ease;
+}
+
+.inputChartYear {
+  width: 130px;
+  height: 40px;
+  padding-left: .5rem;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  outline: none;
+  background-color: #f3f3f4;
+  color: #0d0c22;
+  transition: 0.3s ease;
+}
+
+#actualizarGrafica {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  width: 160px;
+  padding: 0.75rem 0 0.75rem 0;
+  text-align: center;
+  font-size: 0.900rem;
+  font-weight: 300;
+  border: none;
+  background-color: rgb(0, 147, 103);
+  color: rgba(255, 255, 255, 1);
+  transition: .3s;
+}
+
+#actualizarGrafica:hover {
+  background-color: rgb(0, 90, 63);
 }

@@ -459,6 +459,26 @@ router.get('/obtenerIdLibro', async (req, res) => {
 
 
 
+router.get('/librosMasPrestados', async (req, res) => {
+  const { month, year } = req.query;
+
+  try {
+      const pool = await sql.connect(config);
+      const result = await pool.request()
+          .input('month', sql.Int, month)
+          .input('year', sql.Int, year)
+          .execute('LibrosMasPrestados');
+
+      res.json(result.recordset);
+  } catch (err) {
+      console.error(err);
+      res.status(500).send('Error en el servidor');
+  }
+});
+
+
+
+
 
 router.use('/', bookCoverRouter);
 
