@@ -1,6 +1,14 @@
 $(document).ready(function() {
   $(document).on('click', '.vista6-panel', function() {
       $('.contentScroll').addClass('content-Stadistics');
+      const currentDate = new Date();
+      const currentMonth = currentDate.getMonth() + 1; // Los meses en JavaScript son 0-11
+      const currentYear = currentDate.getFullYear();
+    
+      $('#month').val(currentMonth);
+      $('#chartYear').val(currentYear);
+    
+      actualizarGrafica(currentMonth, currentYear);
   });
 
   $(document).on('click', '.vistasPanel', function() {
@@ -57,15 +65,4 @@ $(document).ready(function() {
 
       actualizarGrafica(month, year);
   });
-
-  // Obtener el mes y año actual
-  const currentDate = new Date();
-  const currentMonth = currentDate.getMonth() + 1; // Los meses en JavaScript son 0-11
-  const currentYear = currentDate.getFullYear();
-
-  $('#month').val(currentMonth);
-  $('#chartYear').val(currentYear);
-
-  // Llama a la función con el mes y año actual
-  actualizarGrafica(currentMonth, currentYear);
 });
