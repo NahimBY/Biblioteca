@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UTM</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <link href="../css/style.css" rel="stylesheet" />
+    <script src="../js/home/header.js"></script>
+    <script src="../js/home/languages.js"></script>
+    <script src="../js/home/content.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="open-menu">
+        <div class="toggle " id="toggle">
+            <div class="toggle__line "></div>
+        </div>
+      </div>
+      <div id="logo-box">
+        <a href="#">
+          <img
+            class="logo"
+            src="https://static.wixstatic.com/media/127857_7603355bfa964d8e91aec26548598d9f~mv2.png/v1/fill/w_305,h_75,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/REDES-UTM_edited.png"
+            alt=""
+          />
+        </a>
+      </div>
+      <div id="header-content" class="menu">
+        <ul>
+          <li><a href="index.html">UTM</a></li>
+          <li>
+            <a>Oferta Académica</a>
+            <ul class="submenu">
+              <li><a href="#">Carrera Industrial</a></li>
+              <li><a href="#">DIDE</a></li>
+              <li><a href="#">Carrera Administración</a></li>
+              <li><a href="#">Carrera TIC's</a></li>
+            </ul>
+          </li>
+          <li>
+            <a>Conoce la UTM</a>
+            <ul class="submenu">
+              <li><a href="#">Directorio</a></li>
+              <li><a href="#">Becas STEM</a></li>
+              <li><a href="#">Libros Digitales</a></li>
+              <li><a href="#">Coordinación Idiomas Extranjeros</a></li>
+              <li><a href="#">Movilidad e Internacionalización</a></li>
+            </ul>
+          </li>
+          <li>
+            <a>Comunidad UTM</a>
+            <ul class="submenu">
+              <li><a href="#">Portal de Alumnos</a></li>
+              <li><a href="#">Control Escolar</a></li>
+              <li><a href="#">Estadías Profesionales</a></li>
+              <li><a href="#">Bolsa de Trabajo</a></li>
+              <li><a href="#">Egresados</a></li>
+              <li><a href="#">Catálogo de Servicios</a></li>
+              <li><a id="biblioteca">Biblioteca</a></li>
+            </ul>
+          </li>
+          <li>
+            <a>Integridad</a>
+            <ul class="submenu">
+              <li><a href="#">Integrantes</a></li>
+              <li><a href="#">Pronunciamientos Cero Tolerancia</a></li>
+              <li><a href="#">Reglamento General Estudios</a></li>
+              <li><a href="#">Programa Anual de Trabajo</a></li>
+              <li><a href="#">Código de Conducta</a></li>
+              <li><a href="#">Evaluaciones al Comité</a></li>
+            </ul>
+          </li>
+          <li>
+            <a>Transparencia</a>
+            <ul class="submenu">
+              <li><a href="#">INFOMEX</a></li>
+              <li><a href="#">Contraloría Social</a></li>
+              <li><a href="#">Obligaciones de Transparencia de la UTM</a></li>
+              <li>
+                <a href="#"
+                  >Formato de Solicitud para el Ejercicio de los Derechos</a
+                >
+              </li>
+              <li><a href="#">Bienes, Muebles e Inmuebles</a></li>
+              <li><a href="#">Aviso de Privacidad Integral</a></li>
+              <li><a href="#">Aviso de Privacidad Videovigilancia</a></li>
+              <li><a href="#">Estados Financieros</a></li>
+              <li><a href="#">CITAT</a></li>
+              <li><a href="#">Planes Estratégicos y Específicos</a></li>
+              <li><a href="#">Decreto de Creación</a></li>
+              <li><a href="#">Estatuto Orgánico de la UTM</a></li>
+              <li><a href="#">PADA 2024</a></li>
+              <li><a href="#">Informe PADA 2023</a></li>
+              <li><a href="#">Manual Contabilidad</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div id="search-bar" class="container">
+        <input checked="" class="checkbox" type="checkbox" />
+        <div class="mainbox">
+          <div class="iconContainer">
+            <svg
+              viewBox="0 0 512 512"
+              height="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              class="search_icon"
+            >
+              <path
+                fill="#00ab78"
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+              ></path>
+            </svg>
+          </div>
+          <input class="search_input" placeholder="search" type="text" />
+        </div>
+      </div>
+    </header>
+
+    <section class="language">
+      <button class="slide-btn mx" title="Click para cambiar de idioma">
+        <div class="btn-mx">
+          <img
+            class="btn-icon"
+            src="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/MEX.png"
+            alt=""
+          />
+          <p>ES - MEX</p>
+        </div>
+      </button>
+      <button class="slide-btn us" title="Click here to change language">
+        <div class="btn-us">
+          <img
+            class="btn-icon"
+            src="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/USA.png"
+            alt=""
+          />
+          <p>EN - USA</p>
+        </div>
+      </button>
+      <button class="slide-btn fr" title="Cliquez ici pour changer de langue">
+        <div class="btn-fr">
+          <img
+            class="btn-icon"
+            src="https://static.parastorage.com/services/linguist-flags/1.663.0/assets/flags/round/FRA.png"
+            alt=""
+          />
+          <p>FR - FRA</p>
+        </div>
+      </button>
+    </section>
+
+    <section id="banner">
+      <h1>Somos</h1>
+      <h1>#OrgulloUTM</h1>
+      <img
+        class="banner"
+        src="https://static.wixstatic.com/media/127857_3d05e9000ad64b3db8e88993e350a07e~mv2.jpg/v1/fill/w_1899,h_788,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/127857_3d05e9000ad64b3db8e88993e350a07e~mv2.jpg"
+        alt=""
+      />
+    </section>
+
+    <section class="content-1">
+      <a href="#UTM">
+        <div id="page-down-arrow">
+          <div id="down-arrow-icon">
+            <svg
+              fill="#000000"
+              height="24px"
+              width="24px"
+              version="1.1"
+              id="Layer_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 330 330"
+              xml:space="preserve"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke="#CCCCCC"
+                stroke-width="4.62"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  id="XMLID_225_"
+                  d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
+                ></path>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </a>
+      <br /><br /><br />
+      <img
+        id="UTM"
+        src="https://static.wixstatic.com/media/127857_0497572db1c54824a6d38a7da7458342~mv2.png/v1/crop/x_860,y_860,w_1265,h_1265/fill/w_113,h_113,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/LOGO%201%20UTM.png"
+        alt=""
+      />
+      <br /><br />
+      <h1>
+        Somos la universidad tecnológica <br />
+        pensada en sus alumnos.
+      </h1>
+      <br /><br />
+      <p>
+        Somos una institución de educación superior que surge como respuesta
+        para <br />
+        impulsar y fortalecer las tendencias previsibles del futuro, donde la
+        <br />
+        comunidad universitaria se forma y trabaja en los avances científicos y
+        <br />
+        tecnológicos mundiales que ayudan a fortalecer la cooperación
+        empresarial y <br />
+        la educación, formando profesionales altamente especializados.
+      </p>
+      <br /><br /><br />
+    </section>
+
+    <section class="content-2">
+      <br /><br /><br />
+      <div class="mision">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M5 22V14M5 14V4M5 14L7.47067 13.5059C9.1212 13.1758 10.8321 13.3328 12.3949 13.958C14.0885 14.6354 15.9524 14.7619 17.722 14.3195L17.8221 14.2945C18.4082 14.148 18.6861 13.4769 18.3753 12.9589L16.8147 10.3578C16.4732 9.78863 16.3024 9.50405 16.2619 9.19451C16.2451 9.06539 16.2451 8.93461 16.2619 8.80549C16.3024 8.49595 16.4732 8.21137 16.8147 7.64221L18.0932 5.51132C18.4278 4.9536 17.9211 4.26972 17.2901 4.42746C15.8013 4.79967 14.2331 4.69323 12.8082 4.12329L12.3949 3.95797C10.8321 3.33284 9.1212 3.17576 7.47067 3.50587L5 4M5 4V2"
+              stroke="#053124"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            ></path>
+          </g>
+        </svg>
+        <h1 class="phone-title">MISIÓN</h1>
+        <p>
+          Formar personas mediante el desarrollo de conocimientos y habilidades
+          técnicas para potenciar su crecimiento y contribuir así, al progreso
+          de toda la región sureste del país.
+        </p>
+      </div>
+
+      <br /><br /><br /><br />
+
+      <div class="vision">
+        <h2>SER UNA UNIVERSIDAD...</h2>
+        <br />
+        <div class="vision-text">
+          <p>
+            - Cuyos alumnos tengan garantía que sus habilidades estarán
+            respaldadas mediante un documento que lo acredite.
+            <br /><br />
+            - Que cuente con la estructura y organización necesaria para
+            fomentar e impulsar la innovación, investigación y el
+            emprendimiento.
+            <br /><br />
+            - Financieramente sana.
+            <br /><br />
+            - Que se posicione como la mejor opción entre las universidades
+            tecnológicas del sureste.
+          </p>
+          <svg
+            class="pc-view"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M18.9922 8.07411C18.7683 8.30212 18.5423 8.50328 18.3375 8.67188C18.1401 8.50899 17.9227 8.31226 17.7078 8.08774C16.9853 7.333 16.5 6.48786 16.5 5.6875C16.5 4.59138 17.3653 3.75 18.375 3.75C19.3847 3.75 20.25 4.59138 20.25 5.6875C20.25 6.46225 19.7514 7.30076 18.9922 8.07411ZM21.75 5.6875C21.75 8.4375 18.375 10.5 18.375 10.5C18.2063 10.5 15 8.4375 15 5.6875C15 3.78902 16.511 2.25 18.375 2.25C20.239 2.25 21.75 3.78902 21.75 5.6875ZM3.75 9C3.75 10.2426 4.75736 11.25 6 11.25H18C20.0711 11.25 21.75 12.9289 21.75 15C21.75 17.0711 20.0711 18.75 18 18.75H9.75V17.25H18C19.2426 17.25 20.25 16.2426 20.25 15C20.25 13.7574 19.2426 12.75 18 12.75H6C3.92893 12.75 2.25 11.0711 2.25 9C2.25 6.92893 3.92893 5.25 6 5.25L14.25 5.25V6.75L6 6.75C4.75736 6.75 3.75 7.75736 3.75 9ZM6.24215 19.3241C6.01829 19.5521 5.79234 19.7533 5.58752 19.9219C5.39011 19.759 5.1727 19.5623 4.95777 19.3377C4.23528 18.583 3.75 17.7379 3.75 16.9375C3.75 15.8414 4.61529 15 5.625 15C6.63471 15 7.5 15.8414 7.5 16.9375C7.5 17.7123 7.00145 18.5508 6.24215 19.3241ZM9 16.9375C9 19.6875 5.625 21.75 5.625 21.75C5.45625 21.75 2.25 19.6875 2.25 16.9375C2.25 15.039 3.76104 13.5 5.625 13.5C7.48896 13.5 9 15.039 9 16.9375ZM6.75 16.875C6.75 17.4963 6.24632 18 5.625 18C5.00368 18 4.5 17.4963 4.5 16.875C4.5 16.2537 5.00368 15.75 5.625 15.75C6.24632 15.75 6.75 16.2537 6.75 16.875ZM18.375 6.75C18.9963 6.75 19.5 6.24632 19.5 5.625C19.5 5.00368 18.9963 4.5 18.375 4.5C17.7537 4.5 17.25 5.00368 17.25 5.625C17.25 6.24632 17.7537 6.75 18.375 6.75Z"
+                fill="#053124"
+              ></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <br /><br /><br /><br />
+
+      <div class="valores">
+        <svg
+          fill="#053124"
+          height="200px"
+          width="200px"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 512 512"
+          xml:space="preserve"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <g>
+              <g>
+                <path
+                  d="M332.075,434.445H179.94c-34.377,0-62.343,27.968-62.343,62.344v15.209h276.821v-15.209 C394.418,462.413,366.451,434.445,332.075,434.445z"
+                ></path>
+              </g>
+            </g>
+            <g>
+              <g>
+                <path
+                  d="M496.181,221.441L496.181,221.441L437.234,99.856h34.078V69.438H291.978V35.973c0-19.835-16.136-35.971-35.971-35.971 s-35.971,16.136-35.971,35.971v33.465H40.688v30.417h34.077L15.82,221.441H0v29.067c0,48.919,39.798,88.717,88.717,88.717 s88.717-39.798,88.717-88.717v-29.067h-15.82L102.668,99.856h117.368v304.17h71.942V99.856h117.354l-58.946,121.586h-15.82v29.067 c0,48.919,39.798,88.717,88.717,88.717S512,299.427,512,250.508v-29.067H496.181z M127.81,221.44H49.624l39.093-80.637 L127.81,221.44z M384.19,221.44l39.093-80.637l39.094,80.637H384.19z"
+                ></path>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <p>
+          <b>- Innovación:</b> Extender las fronteras del conocimiento para
+          resolver problemas del mundo real. <br /><br />
+          <b>- Espíritu de servicio y trabajo en equipo:</b> Integrar las
+          habilidades individuales para lograr objetivos compartidos en
+          confianza mutua, mediante una actitud que genere valor hacia los
+          demás. <br /><br />
+          <b>- Transparencia:</b> Garantizar el acceso a la información pública.
+          <br /><br />
+          <b>- Respeto:</b> Actuar cívicamente, considerando los derechos y las
+          necesidades de los demás, reconociendo el justo valor de las personas,
+          las cosas y el medio ambiente. <br /><br />
+          <b>- Honestidad:</b> Procurar la credibilidad de las expresiones y
+          acciones realizadas
+        </p>
+      </div>
+      <br /><br /><br />
+    </section>
+
+    <section class="content-3">
+      <div class="over-img">
+        <img
+          id="UTM"
+          src="https://static.wixstatic.com/media/127857_0497572db1c54824a6d38a7da7458342~mv2.png/v1/crop/x_860,y_860,w_1265,h_1265/fill/w_113,h_113,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/LOGO%201%20UTM.png"
+          alt=""
+        />
+        <br /><br /><br />
+        <h1>CONÓCE NUESTRAS INSTALACIONES</h1>
+        <br />
+        <button>Haz click aquí</button>
+      </div>
+      <img
+        src="https://static.wixstatic.com/media/127857_f4fa999cd54d446aae101555fff430fd~mv2.jpg/v1/fill/w_1899,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/127857_f4fa999cd54d446aae101555fff430fd~mv2.jpg"
+        alt=""
+      />
+    </section>
+
+    <section class="content-4">
+      <div class="images">
+        <img
+          src="https://static.wixstatic.com/media/127857_5074cfb1944542cb857c825e40e00f34~mv2.png/v1/fill/w_455,h_94,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Logo%20UTM-02.png"
+          alt=""
+        />
+        <img
+          src="https://static.wixstatic.com/media/3fe6fb_e4c019977f834a00ba335426040c6849~mv2.jpg/v1/crop/x_22,y_0,w_2846,h_1198/fill/w_324,h_136,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/logo%20contraloria_edited.jpg"
+          alt=""
+        />
+      </div>
+    </section>
+
+    <section class="content-5">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3726.350899126569!2d-89.61906932484959!3d20.938418980688425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5672270a784baf%3A0x764b40010695f0d9!2sUniversidad%20Tecnol%C3%B3gica%20Metropolitana!5e0!3m2!1ses!2smx!4v1718521941038!5m2!1ses!2smx"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </section>
+
+    <section class="content-footer">
+      <footer class="pie-pagina" id="about">
+        <div class="grupo-1">
+          <div class="box">
+            <img
+              class="logo-footer"
+              src="https://static.wixstatic.com/media/127857_7603355bfa964d8e91aec26548598d9f~mv2.png/v1/fill/w_305,h_75,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/REDES-UTM_edited.png"
+              alt=""
+            />
+          </div>
+          <div class="box">
+            <h2>CONTÁCTANOS</h2>
+            <p>
+              9999406100
+              <br />
+              Mérida, Yucatán, México
+            </p>
+          </div>
+          <div class="box">
+            <h2>SÍGUENOS</h2>
+            <div class="red-social">
+              <a href="" target="_blank" title="Facebook">
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Facebook</title>
+                  <path
+                    d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"
+                  />
+                </svg>
+              </a>
+              <a href="" target="_blank" title="Instagram">
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Instagram</title>
+                  <path
+                    d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"
+                  />
+                </svg>
+              </a>
+              <a href="" target="_blank" title="X">
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>X</title>
+                  <path
+                    d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
+                  />
+                </svg>
+              </a>
+              <a href="" target="_blank" title="YouTube">
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>YouTube</title>
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                  />
+                </svg>
+              </a>
+              <a href="" target="_blank" title="Blog">
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Blogger</title>
+                  <path
+                    d="M21.976 24H2.026C.9 24 0 23.1 0 21.976V2.026C0 .9.9 0 2.025 0H22.05C23.1 0 24 .9 24 2.025v19.95C24 23.1 23.1 24 21.976 24zM12 3.975H9c-2.775 0-5.025 2.25-5.025 5.025v6c0 2.774 2.25 5.024 5.025 5.024h6c2.774 0 5.024-2.25 5.024-5.024v-3.975c0-.6-.45-1.05-1.05-1.05H18c-.524 0-.976-.45-.976-.976 0-2.776-2.25-5.026-5.024-5.026zm3.074 12H9c-.525 0-.975-.45-.975-.975s.45-.976.975-.976h6.074c.526 0 .977.45.977.976s-.45.976-.975.976zm-2.55-7.95c.527 0 .976.45.976.975s-.45.975-.975.975h-3.6c-.525 0-.976-.45-.976-.975s.45-.975.975-.975h3.6z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="grupo-2">
+          <small>
+            <b>Universidad Tecnológica Metropolitana</b> &copy; Todos los
+            Derechos Reservados.
+          </small>
+          <br />
+        </div>
+      </footer>
+    </section>
+  </body>
+</html>

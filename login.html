@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="css/login.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+  <script src="js/login/login.js"></script>
+  <script src="js/login/functions.js"></script>
+</head>
+<body>
+    <div class="bg-green"></div>
+    <div class="notification"></div>
+    <div class="errorNotification"></div>
+
+    <div class="container">
+      <div class="forms">
+          <div class="form login">
+              <span class="title">Login</span>
+              <form id="loginForm">
+                  <div class="input-field">
+                      <input type="text" class="emailLogin"  placeholder="Email" required>
+                      <i class="uil uil-envelope icon"></i>
+                  </div>
+                  <div class="input-field">
+                      <input type="password" class="password passwordLogin" placeholder="Contraseña" required>
+                      <i class="uil uil-lock icon"></i>
+                      <i class="uil uil-eye-slash showHidePw"></i>
+                  </div>
+                  <div class="checkbox-text">
+                      <a href="#" class="text">¿Olvidaste tu contraseña?</a>
+                  </div>
+                  <div class="input-field button">
+                      <input type="submit" value="Login">
+                  </div>
+              </form>
+              <div class="login-signup">
+                  <span class="text">¿No tienes una cuenta?
+                      <a href="#" class="text signup-link">Regístrate.</a>
+                  </span>
+              </div>
+          </div>
+
+          <!-- Registration Form -->
+          <div class="form signup">
+              <span class="title">Registro</span>
+              <form id="registerForm">
+                <div class="input-field">
+                    <input type="text" class="nombreRegister" placeholder="Nombre completo" required>
+                    <i class="uil uil-user"></i>
+                </div>
+                <div class="input-field">
+                    <input type="text" class="emailRegister" placeholder="Email" required>
+                    <i class="uil uil-envelope icon"></i>
+                </div>
+                    <span class="error" id="emailError">Ingresa correo institucional</span>
+                <div class="input-field">
+                    <input type="password" class="password passwordRegister" placeholder="Crea una contraseña" required>
+                    <i class="uil uil-lock icon"></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" class="password confirmPasswordRegister" placeholder="Crea una contraseña" required>
+                    <i class="uil uil-lock icon"></i>
+                    <i class="uil uil-eye-slash showHidePw"></i>
+                </div>
+                <span class="error" id="passwordError">Las contraseñas no coinciden</span>
+                <div class="input-field button">
+                    <input type="submit" value="Registrarse" id="registerButton">
+                </div>
+              </form>
+              <div class="login-signup">
+                  <span class="text">¿Ya tienes una cuenta?
+                      <a href="#" class="text login-link">Inicia sesión.</a>
+                  </span>
+              </div>
+          </div>
+      </div>
+    </div>
+</body>
+</html>

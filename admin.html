@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biblioteca | Admin</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="../js/biblioteca/turnjs4/lib/turn.min.js"></script>
+  <script src="../js/biblioteca/admin.js"></script>
+  <script src="../js/biblioteca/searchFilter.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="logo-box">
+      <a href="index.html">
+        <img class="logo"
+          src="https://static.wixstatic.com/media/127857_7603355bfa964d8e91aec26548598d9f~mv2.png/v1/fill/w_305,h_75,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/REDES-UTM_edited.png"
+          alt="" />
+      </a>
+    </div>
+    <div class="user">
+      <div class="bg-user">
+        <p class="username"></p>
+        <svg class="user-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6C13.6569 6 15 7.34315 15 9ZM12 20.5C13.784 20.5 15.4397 19.9504 16.8069 19.0112C17.4108 18.5964 17.6688 17.8062 17.3178 17.1632C16.59 15.8303 15.0902 15 11.9999 15C8.90969 15 7.40997 15.8302 6.68214 17.1632C6.33105 17.8062 6.5891 18.5963 7.19296 19.0111C8.56018 19.9503 10.2159 20.5 12 20.5Z"
+              fill="#ffffff"></path>
+          </g>
+        </svg>
+      </div>
+      <ul>
+        <li id="logout">Logout</li>
+      </ul>
+    </div>
+  </header>
+
+  <section id="panel">
+    <div id="content-panel">
+      <h1 class="title">PANEL</h1>
+    </div>
+    <hr />
+    <nav>
+      <ul class="menu">
+        <li class="vista1-panel vistasPanel">
+          <p>Activos</p>
+          <svg fill="#053124" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="m0 12c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12c-6.624-.008-11.992-5.376-12-11.999zm2.4 0c0 5.302 4.298 9.6 9.6 9.6s9.6-4.298 9.6-9.6-4.298-9.6-9.6-9.6c-5.299.006-9.594 4.301-9.6 9.599v.001zm4 0c0-3.093 2.507-5.6 5.6-5.6s5.6 2.507 5.6 5.6-2.507 5.6-5.6 5.6c-3.093 0-5.6-2.507-5.6-5.6z"></path></g></svg>
+        </li>
+        <hr />
+        <li class="vista2-panel vistasPanel">
+          <p>Bajas</p>
+          <svg fill="#053124" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="m12 24c-6.627 0-12-5.373-12-12s5.373-12 12-12 12 5.373 12 12c-.008 6.624-5.376 11.992-11.999 12zm0-21.6c-5.302 0-9.6 4.298-9.6 9.6s4.298 9.6 9.6 9.6 9.6-4.298 9.6-9.6c-.006-5.299-4.301-9.594-9.599-9.6h-.001z"></path></g></svg>
+        </li>
+        <hr />
+        <li class="vista3-panel vistasPanel">
+          <p>Lotes</p>
+          <svg fill="#053124" viewBox="0 -32 576 576" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M560 288h-80v96l-32-21.3-32 21.3v-96h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16zm-384-64h224c8.8 0 16-7.2 16-16V16c0-8.8-7.2-16-16-16h-80v96l-32-21.3L256 96V0h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16zm64 64h-80v96l-32-21.3L96 384v-96H16c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16z"></path></g></svg>
+        </li>
+        <hr />
+        <li class="vista4-panel vistasPanel">
+          <p>Prestamos</p>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#053124" stroke-width="0.696"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7.96967 12.5303C8.26256 12.8232 8.73744 12.8232 9.03033 12.5303C9.32322 12.2374 9.32322 11.7626 9.03033 11.4697L7.96967 12.5303ZM5.53033 7.96967C5.23744 7.67678 4.76256 7.67678 4.46967 7.96967C4.17678 8.26256 4.17678 8.73744 4.46967 9.03033L5.53033 7.96967ZM5 7.75C4.58579 7.75 4.25 8.08579 4.25 8.5C4.25 8.91421 4.58579 9.25 5 9.25V7.75ZM19 9.25C19.4142 9.25 19.75 8.91421 19.75 8.5C19.75 8.08579 19.4142 7.75 19 7.75V9.25ZM4.46967 7.96967C4.17678 8.26256 4.17678 8.73744 4.46967 9.03033C4.76256 9.32322 5.23744 9.32322 5.53033 9.03033L4.46967 7.96967ZM9.03033 5.53033C9.32322 5.23744 9.32322 4.76256 9.03033 4.46967C8.73744 4.17678 8.26256 4.17678 7.96967 4.46967L9.03033 5.53033ZM16.0303 11.4697C15.7374 11.1768 15.2626 11.1768 14.9697 11.4697C14.6768 11.7626 14.6768 12.2374 14.9697 12.5303L16.0303 11.4697ZM18.4697 16.0303C18.7626 16.3232 19.2374 16.3232 19.5303 16.0303C19.8232 15.7374 19.8232 15.2626 19.5303 14.9697L18.4697 16.0303ZM19 16.25C19.4142 16.25 19.75 15.9142 19.75 15.5C19.75 15.0858 19.4142 14.75 19 14.75V16.25ZM5 14.75C4.58579 14.75 4.25 15.0858 4.25 15.5C4.25 15.9142 4.58579 16.25 5 16.25V14.75ZM19.5303 16.0303C19.8232 15.7374 19.8232 15.2626 19.5303 14.9697C19.2374 14.6768 18.7626 14.6768 18.4697 14.9697L19.5303 16.0303ZM14.9697 18.4697C14.6768 18.7626 14.6768 19.2374 14.9697 19.5303C15.2626 19.8232 15.7374 19.8232 16.0303 19.5303L14.9697 18.4697ZM9.03033 11.4697L5.53033 7.96967L4.46967 9.03033L7.96967 12.5303L9.03033 11.4697ZM5 9.25H19V7.75H5V9.25ZM5.53033 9.03033L9.03033 5.53033L7.96967 4.46967L4.46967 7.96967L5.53033 9.03033ZM14.9697 12.5303L18.4697 16.0303L19.5303 14.9697L16.0303 11.4697L14.9697 12.5303ZM19 14.75H5V16.25H19V14.75ZM18.4697 14.9697L14.9697 18.4697L16.0303 19.5303L19.5303 16.0303L18.4697 14.9697Z" fill="#053124"></path> </g></svg>
+        </li>
+        <hr />
+        <li class="vista5-panel vistasPanel">
+          <p>Incidentes</p>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>active_incident</title> <path d="M0,0H24V24H0Z" fill="none"></path> <path d="M3,12A6,6,0,0,1,7,6.35V4.26A8,8,0,0,0,7,19.74V17.65A6,6,0,0,1,3,12Z"></path> <path d="M15,4a8,8,0,1,0,8,8A8,8,0,0,0,15,4Zm0,13a1,1,0,0,1-1-1h2A1,1,0,0,1,15,17Zm4-2H11V14l1.33-1V10.67A2.66,2.66,0,0,1,14,8.2V8a1,1,0,0,1,2,0v.2a2.66,2.66,0,0,1,1.67,2.47V13L19,14Z"></path> </g></svg>
+        </li>
+        <hr />
+        <li class="vista6-panel vistasPanel">
+          <p>Estadísticas</p>
+          <svg viewBox="-3 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>stats</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-314.000000, -673.000000)" fill="#053124"> <path d="M328,673 L326,673 C324.896,673 324,673.896 324,675 L324,703 C324,704.104 324.896,705 326,705 L328,705 C329.104,705 330,704.104 330,703 L330,675 C330,673.896 329.104,673 328,673 L328,673 Z M338,689 L336,689 C334.896,689 334,689.896 334,691 L334,703 C334,704.104 334.896,705 336,705 L338,705 C339.104,705 340,704.104 340,703 L340,691 C340,689.896 339.104,689 338,689 L338,689 Z M318,682 L316,682 C314.896,682 314,682.896 314,684 L314,703 C314,704.104 314.896,705 316,705 L318,705 C319.104,705 320,704.104 320,703 L320,684 C320,682.896 319.104,682 318,682 L318,682 Z" id="stats" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>
+        </li>
+        <hr />
+      </ul>
+    </nav>
+  </section>
+
+  <section class="add-book">
+    <div class="add-card-box">
+      <div class="add-cardInfoBook">
+        <div class="add-header">
+          <span class="add-iconBook">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.27103 2.11151C5.46135 2.21816 5.03258 2.41324 4.72718 2.71244C4.42179 3.01165 4.22268 3.43172 4.11382 4.225C4.00176 5.04159 4 6.12387 4 7.67568V16.2442C4.38867 15.9781 4.82674 15.7756 5.29899 15.6517C5.82716 15.513 6.44305 15.5132 7.34563 15.5135L20 15.5135V7.67568C20 6.12387 19.9982 5.04159 19.8862 4.22499C19.7773 3.43172 19.5782 3.01165 19.2728 2.71244C18.9674 2.41324 18.5387 2.21816 17.729 2.11151C16.8955 2.00172 15.7908 2 14.2069 2H9.7931C8.2092 2 7.10452 2.00172 6.27103 2.11151ZM6.75862 6.59459C6.75862 6.1468 7.12914 5.78378 7.58621 5.78378H16.4138C16.8709 5.78378 17.2414 6.1468 17.2414 6.59459C17.2414 7.04239 16.8709 7.40541 16.4138 7.40541H7.58621C7.12914 7.40541 6.75862 7.04239 6.75862 6.59459ZM7.58621 9.56757C7.12914 9.56757 6.75862 9.93058 6.75862 10.3784C6.75862 10.8262 7.12914 11.1892 7.58621 11.1892H13.1034C13.5605 11.1892 13.931 10.8262 13.931 10.3784C13.931 9.93058 13.5605 9.56757 13.1034 9.56757H7.58621Z" fill="#fff"></path> <path d="M8.68965 17.1351H7.47341C6.39395 17.1351 6.01657 17.1421 5.72738 17.218C4.93365 17.4264 4.30088 18.0044 4.02952 18.7558C4.0463 19.1382 4.07259 19.4746 4.11382 19.775C4.22268 20.5683 4.42179 20.9884 4.72718 21.2876C5.03258 21.5868 5.46135 21.7818 6.27103 21.8885C7.10452 21.9983 8.2092 22 9.7931 22H14.2069C15.7908 22 16.8955 21.9983 17.729 21.8885C18.5387 21.7818 18.9674 21.5868 19.2728 21.2876C19.5782 20.9884 19.7773 20.5683 19.8862 19.775C19.9776 19.1088 19.9956 18.2657 19.9991 17.1351H13.1034V20.1417C13.1034 20.4397 13.1034 20.5886 12.9988 20.6488C12.8941 20.709 12.751 20.6424 12.4647 20.5092L11.0939 19.8713C10.9971 19.8262 10.9486 19.8037 10.8966 19.8037C10.8445 19.8037 10.796 19.8262 10.6992 19.8713L9.32842 20.5092C9.04213 20.6424 8.89899 20.709 8.79432 20.6488C8.68965 20.5886 8.68965 20.4397 8.68965 20.1417V17.1351Z" fill="#fff"></path> </g></svg>
+          </span>
+          <p class="add-alert">Agregar</p>
+        </div>
+        <div class="add-closeWindow">
+          <svg class="add-closeWin close" fill="#053124" viewBox="-3.5 0 19 19" xmlns="http://www.w3.org/2000/svg" class="cf-icon-svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M11.383 13.644A1.03 1.03 0 0 1 9.928 15.1L6 11.172 2.072 15.1a1.03 1.03 0 1 1-1.455-1.456l3.928-3.928L.617 5.79a1.03 1.03 0 1 1 1.455-1.456L6 8.261l3.928-3.928a1.03 1.03 0 0 1 1.455 1.456L7.455 9.716z"></path></g></svg>
+        </div>
+
+        <div class="add-catch-data">
+          <div class="add-inputs-area">
+            
+            <form id="add-tituloForm" class="add-input-form">
+              <label for="titulo">Título:</label>
+              <input type="text" id="add-titulo" name="titulo" required>
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="add-autorForm" class="add-input-form">
+              <label for="autor">Autor:</label>
+              <input type="text" id="add-autor" name="autor" required>
+              <p class="errorMsg"></p><br>
+            </form>
+  
+            <form id="add-yearForm" class="add-input-form">
+              <label for="year">Año:</label>
+              <input type="number" id="add-year" name="year" required>
+              <p class="errorMsg"></p><br>
+            </form>
+  
+            <form id="add-paginadoForm" class="add-input-form">
+              <label for="paginado">Paginado:</label>
+              <input type="number" id="add-paginado" name="paginado" required>
+              <p class="errorMsg"></p><br>
+            </form>
+  
+            <form id="add-editorialForm" class="add-input-form">
+              <label for="editorial">Editorial:</label>
+              <input type="text" id="add-editorial" name="editorial" required>
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="add-generoForm" class="add-input-form">
+              <label for="genero">Género:</label>
+              <select id="add-genero">
+                <option value="Científica">Científica</option>
+                <option value="Literatura">Literatura</option>
+                <option value="Biografías">Biografías</option>
+                <option value="Historia">Historia</option>
+                <option value="Psicología">Psicología</option>
+                <option value="Negocios">Negocios</option>
+                <option value="Tecnología">Tecnología</option>
+                <option value="Sociales">Sociales</option>
+                <option value="Arte">Arte</option>
+                <option value="Salud">Salud</option>
+                <option value="Derecho">Derecho</option>
+                <option value="Idiomas">Idiomas</option>
+                <option value="Filosofía">Filosofía</option>
+              </select>
+            </form> 
+            
+            <form id="add-cantidadForm" class="add-input-form">
+              <label for="cantidad">Cantidad:</label>
+              <input type="number" id="add-cantidad" name="cantidad">
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="add-estadoForm" class="add-input-form">
+              <label for="estado">Estado:</label>
+              <select id="add-estado">
+                <option value="Disponible">Disponible</option>
+                <option value="No disponible">No disponible</option>
+              </select>
+            </form>
+    
+          </div>
+          
+          <form id="add-descripcionForm" class="add-input-form">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="add-descripcion" name="descripcion" required></textarea>
+            <p class="errorMsg"></p><br>
+          </form>
+          
+          <div class="add-actions">
+            <a class="add">
+              Añadir
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="edit-book">
+    <div class="edit-card-box">
+      <div class="edit-cardInfoBook">
+        <div class="edit-header">
+          <span class="edit-iconBook">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.27103 2.11151C5.46135 2.21816 5.03258 2.41324 4.72718 2.71244C4.42179 3.01165 4.22268 3.43172 4.11382 4.225C4.00176 5.04159 4 6.12387 4 7.67568V16.2442C4.38867 15.9781 4.82674 15.7756 5.29899 15.6517C5.82716 15.513 6.44305 15.5132 7.34563 15.5135L20 15.5135V7.67568C20 6.12387 19.9982 5.04159 19.8862 4.22499C19.7773 3.43172 19.5782 3.01165 19.2728 2.71244C18.9674 2.41324 18.5387 2.21816 17.729 2.11151C16.8955 2.00172 15.7908 2 14.2069 2H9.7931C8.2092 2 7.10452 2.00172 6.27103 2.11151ZM6.75862 6.59459C6.75862 6.1468 7.12914 5.78378 7.58621 5.78378H16.4138C16.8709 5.78378 17.2414 6.1468 17.2414 6.59459C17.2414 7.04239 16.8709 7.40541 16.4138 7.40541H7.58621C7.12914 7.40541 6.75862 7.04239 6.75862 6.59459ZM7.58621 9.56757C7.12914 9.56757 6.75862 9.93058 6.75862 10.3784C6.75862 10.8262 7.12914 11.1892 7.58621 11.1892H13.1034C13.5605 11.1892 13.931 10.8262 13.931 10.3784C13.931 9.93058 13.5605 9.56757 13.1034 9.56757H7.58621Z" fill="#fff"></path> <path d="M8.68965 17.1351H7.47341C6.39395 17.1351 6.01657 17.1421 5.72738 17.218C4.93365 17.4264 4.30088 18.0044 4.02952 18.7558C4.0463 19.1382 4.07259 19.4746 4.11382 19.775C4.22268 20.5683 4.42179 20.9884 4.72718 21.2876C5.03258 21.5868 5.46135 21.7818 6.27103 21.8885C7.10452 21.9983 8.2092 22 9.7931 22H14.2069C15.7908 22 16.8955 21.9983 17.729 21.8885C18.5387 21.7818 18.9674 21.5868 19.2728 21.2876C19.5782 20.9884 19.7773 20.5683 19.8862 19.775C19.9776 19.1088 19.9956 18.2657 19.9991 17.1351H13.1034V20.1417C13.1034 20.4397 13.1034 20.5886 12.9988 20.6488C12.8941 20.709 12.751 20.6424 12.4647 20.5092L11.0939 19.8713C10.9971 19.8262 10.9486 19.8037 10.8966 19.8037C10.8445 19.8037 10.796 19.8262 10.6992 19.8713L9.32842 20.5092C9.04213 20.6424 8.89899 20.709 8.79432 20.6488C8.68965 20.5886 8.68965 20.4397 8.68965 20.1417V17.1351Z" fill="#fff"></path> </g></svg>
+          </span>
+          <p class="edit-alert">Editar</p>
+        </div>
+        <div class="closeWindow">
+          <svg class="closeWin close" fill="#053124" viewBox="-3.5 0 19 19" xmlns="http://www.w3.org/2000/svg" class="cf-icon-svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M11.383 13.644A1.03 1.03 0 0 1 9.928 15.1L6 11.172 2.072 15.1a1.03 1.03 0 1 1-1.455-1.456l3.928-3.928L.617 5.79a1.03 1.03 0 1 1 1.455-1.456L6 8.261l3.928-3.928a1.03 1.03 0 0 1 1.455 1.456L7.455 9.716z"></path></g></svg>
+        </div>
+
+        <div class="catch-data">
+          <div class="inputs-area">
+            
+            <form id="tituloForm" class="input-form">
+              <label for="titulo">Título:</label>
+              <input type="text" id="titulo" name="titulo" required>
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="autorForm" class="input-form">
+              <label for="autor">Autor:</label>
+              <input type="text" id="autor" name="autor" required>
+              <p class="errorMsg"></p><br>
+            </form>
+  
+            <form id="yearForm" class="input-form">
+              <label for="year">Año:</label>
+              <input type="number" id="year" name="year" required>
+              <p class="errorMsg"></p><br>
+            </form>
+  
+            <form id="paginadoForm" class="input-form">
+              <label for="paginado">Paginado:</label>
+              <input type="number" id="paginado" name="paginado" required>
+              <p class="errorMsg"></p><br>
+            </form>
+  
+            <form id="editorialForm" class="input-form">
+              <label for="editorial">Editorial:</label>
+              <input type="text" id="editorial" name="editorial" required>
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="generoForm" class="input-form">
+              <label for="genero">Género:</label>
+              <select id="genero">
+                <option value="Científica">Científica</option>
+                <option value="Literatura">Literatura</option>
+                <option value="Biografías">Biografías</option>
+                <option value="Historia">Historia</option>
+                <option value="Psicología">Psicología</option>
+                <option value="Negocios">Negocios</option>
+                <option value="Tecnología">Tecnología</option>
+                <option value="Sociales">Sociales</option>
+                <option value="Arte">Arte</option>
+                <option value="Salud">Salud</option>
+                <option value="Derecho">Derecho</option>
+                <option value="Idiomas">Idiomas</option>
+                <option value="Filosofía">Filosofía</option>
+              </select>
+            </form> 
+            
+            <form id="cantidadForm" class="input-form">
+              <label for="cantidad">Cantidad:</label>
+              <input type="number" id="cantidad" name="cantidad">
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="estadoForm" class="input-form">
+              <label for="estado">Estado:</label>
+              <select id="estado">
+                <option value="Disponible">Disponible</option>
+                <option value="No disponible">No disponible</option>
+              </select>
+            </form>
+    
+          </div>
+          
+          <form id="descripcionForm" class="input-form">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+            <p class="errorMsg"></p>
+          </form>
+          
+          <div class="edit-actions">
+            <a class="actualizar">
+              Actualizar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="incident-book">
+    <div class="incident-card-box">
+      <div class="incident-cardInfoBook">
+        <div class="incident-header">
+          <span class="incident-iconBook">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#FFF" stroke="#FFF" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>incident_active</title> <path d="M0,0H24V24H0Z" fill="none"></path> <path d="M3,12A6,6,0,0,1,7,6.35V4.26A8,8,0,0,0,7,19.74V17.65A6,6,0,0,1,3,12Z"></path> <path d="M15,4a8,8,0,1,0,8,8A8,8,0,0,0,15,4ZM12.23,6.79l.71.71a3.46,3.46,0,0,0-1.44,2.81h-1A4.49,4.49,0,0,1,12.23,6.79ZM15,17a1,1,0,0,1-1-1h2A1,1,0,0,1,15,17Zm4-2H11V14l1.33-1V10.67A2.66,2.66,0,0,1,14,8.2V8a1,1,0,0,1,2,0v.2a2.66,2.66,0,0,1,1.67,2.47V13L19,14Zm-.5-4.69A3.46,3.46,0,0,0,17.06,7.5l.71-.71a4.49,4.49,0,0,1,1.73,3.52Z"></path> </g></svg>
+          </span>
+          <p class="incident-alert">Incidente</p>
+        </div>
+        <div class="incident-closeWindow">
+          <svg class="incident-closeWin close" fill="#053124" viewBox="-3.5 0 19 19" xmlns="http://www.w3.org/2000/svg" class="cf-icon-svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M11.383 13.644A1.03 1.03 0 0 1 9.928 15.1L6 11.172 2.072 15.1a1.03 1.03 0 1 1-1.455-1.456l3.928-3.928L.617 5.79a1.03 1.03 0 1 1 1.455-1.456L6 8.261l3.928-3.928a1.03 1.03 0 0 1 1.455 1.456L7.455 9.716z"></path></g></svg>
+        </div>
+
+        <div class="incident-catch-data">
+          <div class="incident-inputs-area">
+            
+            <form id="incident-matriculaForm" class="incident-input-form">
+              <label for="matricula">Matrícula:</label>
+              <input type="text" id="incident-matricula" name="matricula" required>
+              <div class="suggestions"></div>
+              <p class="errorMsg"></p><br>
+            </form>
+
+            <form id="incident-emailForm" class="incident-input-form">
+              <label for="email">Email:</label>
+              <input type="text" id="incident-email" name="email" required>
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="incident-tituloForm" class="incident-input-form">
+              <label for="titulo">Libro:</label>
+              <input type="text" id="incident-titulo" name="titulo" required>
+              <div class="suggestions"></div>
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="incident-id_libroForm" class="incident-input-form">
+              <label for="id_libro">ID Libro:</label>
+              <input type="text" id="incident-id_libro" name="id_libro" required>
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="incident-fechaForm" class="incident-input-form">
+              <label for="fecha">Fecha:</label>
+              <input type="date" id="incident-fecha" name="fecha" required>
+              <p class="errorMsg"></p><br>
+            </form>
+
+          </div>
+          
+          <form id="incident-descripcionForm" class="incident-input-form">
+            <label for="descripcion">Incidente:</label>
+            <textarea id="incident-descripcion" name="descripcion" required></textarea>
+            <p class="errorMsg"></p><br>
+          </form>
+          
+          <div class="incident-actions">
+            <a class="incident">
+              Añadir
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="edit-incident-book">
+    <div class="edit-incident-card-box">
+      <div class="edit-incident-cardInfoBook">
+        <div class="edit-incident-header">
+          <span class="edit-incident-iconBook">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#FFF" stroke="#FFF" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>incident_active</title> <path d="M0,0H24V24H0Z" fill="none"></path> <path d="M3,12A6,6,0,0,1,7,6.35V4.26A8,8,0,0,0,7,19.74V17.65A6,6,0,0,1,3,12Z"></path> <path d="M15,4a8,8,0,1,0,8,8A8,8,0,0,0,15,4ZM12.23,6.79l.71.71a3.46,3.46,0,0,0-1.44,2.81h-1A4.49,4.49,0,0,1,12.23,6.79ZM15,17a1,1,0,0,1-1-1h2A1,1,0,0,1,15,17Zm4-2H11V14l1.33-1V10.67A2.66,2.66,0,0,1,14,8.2V8a1,1,0,0,1,2,0v.2a2.66,2.66,0,0,1,1.67,2.47V13L19,14Zm-.5-4.69A3.46,3.46,0,0,0,17.06,7.5l.71-.71a4.49,4.49,0,0,1,1.73,3.52Z"></path> </g></svg>
+          </span>
+          <p class="edit-incident-alert">Editar</p>
+        </div>
+        <div class="edit-incident-closeWindow">
+          <svg class="edit-incident-closeWin close" fill="#053124" viewBox="-3.5 0 19 19" xmlns="http://www.w3.org/2000/svg" class="cf-icon-svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M11.383 13.644A1.03 1.03 0 0 1 9.928 15.1L6 11.172 2.072 15.1a1.03 1.03 0 1 1-1.455-1.456l3.928-3.928L.617 5.79a1.03 1.03 0 1 1 1.455-1.456L6 8.261l3.928-3.928a1.03 1.03 0 0 1 1.455 1.456L7.455 9.716z"></path></g></svg>
+        </div>
+
+        <div class="edit-incident-catch-data">
+          <div class="edit-incident-inputs-area">
+            
+            <form id="edit-incident-matriculaForm" class="edit-incident-input-form">
+              <label for="matricula">Matrícula:</label>
+              <input type="text" id="edit-incident-matricula" name="matricula" required>
+              <div class="suggestions"></div>
+              <p class="errorMsg"></p><br>
+            </form>
+
+            <form id="edit-incident-emailForm" class="edit-incident-input-form">
+              <label for="email">Email:</label>
+              <input type="text" id="edit-incident-email" name="email" required>
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="edit-incident-tituloForm" class="edit-incident-input-form">
+              <label for="titulo">Libro:</label>
+              <input type="text" id="edit-incident-titulo" name="titulo" required>
+              <div class="suggestions"></div>
+              <p class="errorMsg"></p><br>
+            </form>
+            
+            <form id="edit-incident-id_libroForm" class="edit-incident-input-form">
+              <label for="id_libro">ID Libro:</label>
+              <input type="text" id="edit-incident-id_libro" name="id_libro" required>
+              <p class="errorMsg"></p><br>
+            </form>
+
+            <form id="incident-fechaForm" class="edit-incident-input-form">
+              <label for="fecha">Fecha:</label>
+              <input type="date" id="edit-incident-fecha" name="fecha" required>
+              <p class="errorMsg"></p><br>
+            </form>
+
+          </div>
+          
+          <form id="edit-incident-descripcionForm" class="edit-incident-input-form">
+            <label for="descripcion">Incidente:</label>
+            <textarea id="edit-incident-descripcion" name="descripcion" required></textarea>
+            <p class="errorMsg"></p><br>
+          </form>
+          
+          <div class="edit-incident-actions">
+            <a class="edit-incident">
+              Actualizar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="bg-card"></div>
+    <div class="card-box">
+      <div class="cardInfoBook">
+        <div class="header">
+          <span class="iconBook">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.27103 2.11151C5.46135 2.21816 5.03258 2.41324 4.72718 2.71244C4.42179 3.01165 4.22268 3.43172 4.11382 4.225C4.00176 5.04159 4 6.12387 4 7.67568V16.2442C4.38867 15.9781 4.82674 15.7756 5.29899 15.6517C5.82716 15.513 6.44305 15.5132 7.34563 15.5135L20 15.5135V7.67568C20 6.12387 19.9982 5.04159 19.8862 4.22499C19.7773 3.43172 19.5782 3.01165 19.2728 2.71244C18.9674 2.41324 18.5387 2.21816 17.729 2.11151C16.8955 2.00172 15.7908 2 14.2069 2H9.7931C8.2092 2 7.10452 2.00172 6.27103 2.11151ZM6.75862 6.59459C6.75862 6.1468 7.12914 5.78378 7.58621 5.78378H16.4138C16.8709 5.78378 17.2414 6.1468 17.2414 6.59459C17.2414 7.04239 16.8709 7.40541 16.4138 7.40541H7.58621C7.12914 7.40541 6.75862 7.04239 6.75862 6.59459ZM7.58621 9.56757C7.12914 9.56757 6.75862 9.93058 6.75862 10.3784C6.75862 10.8262 7.12914 11.1892 7.58621 11.1892H13.1034C13.5605 11.1892 13.931 10.8262 13.931 10.3784C13.931 9.93058 13.5605 9.56757 13.1034 9.56757H7.58621Z" fill="#fff"></path> <path d="M8.68965 17.1351H7.47341C6.39395 17.1351 6.01657 17.1421 5.72738 17.218C4.93365 17.4264 4.30088 18.0044 4.02952 18.7558C4.0463 19.1382 4.07259 19.4746 4.11382 19.775C4.22268 20.5683 4.42179 20.9884 4.72718 21.2876C5.03258 21.5868 5.46135 21.7818 6.27103 21.8885C7.10452 21.9983 8.2092 22 9.7931 22H14.2069C15.7908 22 16.8955 21.9983 17.729 21.8885C18.5387 21.7818 18.9674 21.5868 19.2728 21.2876C19.5782 20.9884 19.7773 20.5683 19.8862 19.775C19.9776 19.1088 19.9956 18.2657 19.9991 17.1351H13.1034V20.1417C13.1034 20.4397 13.1034 20.5886 12.9988 20.6488C12.8941 20.709 12.751 20.6424 12.4647 20.5092L11.0939 19.8713C10.9971 19.8262 10.9486 19.8037 10.8966 19.8037C10.8445 19.8037 10.796 19.8262 10.6992 19.8713L9.32842 20.5092C9.04213 20.6424 8.89899 20.709 8.79432 20.6488C8.68965 20.5886 8.68965 20.4397 8.68965 20.1417V17.1351Z" fill="#fff"></path> </g></svg>
+          </span>
+          <p class="alert">Prestamo</p>
+        </div>
+        
+        <br>
+        <p class="message msg">¿Quieres completar este prestamo?</p>
+
+        <div class="actions">
+          <a class="completar">
+            Completar
+          </a>
+          <a class="cancelar">
+            Cancelar
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-------------- NOTIFICATIONS -------------->
+  
+  <!----- AÑADIR ----->
+
+  <div class="add-successful">
+    <div class="cardInfo">
+      <div class="headerCardInfo">
+        <span class="icon-checked">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#fff" stroke-width="2" stroke-linecap="round"></path> </g></svg>
+        </span>
+        <p class="cardInfo">El libro ha sido agregado</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-unsuccessful">
+    <div class="cardInfo">
+      <div class="headerCardInfo">
+        <span class="icon-error">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M7.493 0.015 C 7.442 0.021,7.268 0.039,7.107 0.055 C 5.234 0.242,3.347 1.208,2.071 2.634 C 0.660 4.211,-0.057 6.168,0.009 8.253 C 0.124 11.854,2.599 14.903,6.110 15.771 C 8.169 16.280,10.433 15.917,12.227 14.791 C 14.017 13.666,15.270 11.933,15.771 9.887 C 15.943 9.186,15.983 8.829,15.983 8.000 C 15.983 7.171,15.943 6.814,15.771 6.113 C 14.979 2.878,12.315 0.498,9.000 0.064 C 8.716 0.027,7.683 -0.006,7.493 0.015 M8.853 1.563 C 9.967 1.707,11.010 2.136,11.944 2.834 C 12.273 3.080,12.920 3.727,13.166 4.056 C 13.727 4.807,14.142 5.690,14.330 6.535 C 14.544 7.500,14.544 8.500,14.330 9.465 C 13.916 11.326,12.605 12.978,10.867 13.828 C 10.239 14.135,9.591 14.336,8.880 14.444 C 8.456 14.509,7.544 14.509,7.120 14.444 C 5.172 14.148,3.528 13.085,2.493 11.451 C 2.279 11.114,1.999 10.526,1.859 10.119 C 1.618 9.422,1.514 8.781,1.514 8.000 C 1.514 6.961,1.715 6.075,2.160 5.160 C 2.500 4.462,2.846 3.980,3.413 3.413 C 3.980 2.846,4.462 2.500,5.160 2.160 C 6.313 1.599,7.567 1.397,8.853 1.563 M7.706 4.290 C 7.482 4.363,7.355 4.491,7.293 4.705 C 7.257 4.827,7.253 5.106,7.259 6.816 C 7.267 8.786,7.267 8.787,7.325 8.896 C 7.398 9.033,7.538 9.157,7.671 9.204 C 7.803 9.250,8.197 9.250,8.329 9.204 C 8.462 9.157,8.602 9.033,8.675 8.896 C 8.733 8.787,8.733 8.786,8.741 6.816 C 8.749 4.664,8.749 4.662,8.596 4.481 C 8.472 4.333,8.339 4.284,8.040 4.276 C 7.893 4.272,7.743 4.278,7.706 4.290 M7.786 10.530 C 7.597 10.592,7.410 10.753,7.319 10.932 C 7.249 11.072,7.237 11.325,7.294 11.495 C 7.388 11.780,7.697 12.000,8.000 12.000 C 8.303 12.000,8.612 11.780,8.706 11.495 C 8.763 11.325,8.751 11.072,8.681 10.932 C 8.616 10.804,8.460 10.646,8.333 10.580 C 8.217 10.520,7.904 10.491,7.786 10.530 " stroke="none" fill-rule="evenodd" fill=""></path></g></svg>
+        </span>
+        <p class="cardInfo">Se produjo un error al agregar el libro</p>
+      </div>
+    </div>
+  </div>
+
+  <!--------------------->
+  
+  
+  <!----- EDITAR ----->
+
+  <div class="edit-successful">
+    <div class="cardInfo">
+      <div class="headerCardInfo">
+        <span class="icon-checked">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#fff" stroke-width="2" stroke-linecap="round"></path> </g></svg>
+        </span>
+        <p class="cardInfo">El libro ha sido actualizado</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="edit-unsuccessful">
+    <div class="cardInfo">
+      <div class="headerCardInfo">
+        <span class="icon-error">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M7.493 0.015 C 7.442 0.021,7.268 0.039,7.107 0.055 C 5.234 0.242,3.347 1.208,2.071 2.634 C 0.660 4.211,-0.057 6.168,0.009 8.253 C 0.124 11.854,2.599 14.903,6.110 15.771 C 8.169 16.280,10.433 15.917,12.227 14.791 C 14.017 13.666,15.270 11.933,15.771 9.887 C 15.943 9.186,15.983 8.829,15.983 8.000 C 15.983 7.171,15.943 6.814,15.771 6.113 C 14.979 2.878,12.315 0.498,9.000 0.064 C 8.716 0.027,7.683 -0.006,7.493 0.015 M8.853 1.563 C 9.967 1.707,11.010 2.136,11.944 2.834 C 12.273 3.080,12.920 3.727,13.166 4.056 C 13.727 4.807,14.142 5.690,14.330 6.535 C 14.544 7.500,14.544 8.500,14.330 9.465 C 13.916 11.326,12.605 12.978,10.867 13.828 C 10.239 14.135,9.591 14.336,8.880 14.444 C 8.456 14.509,7.544 14.509,7.120 14.444 C 5.172 14.148,3.528 13.085,2.493 11.451 C 2.279 11.114,1.999 10.526,1.859 10.119 C 1.618 9.422,1.514 8.781,1.514 8.000 C 1.514 6.961,1.715 6.075,2.160 5.160 C 2.500 4.462,2.846 3.980,3.413 3.413 C 3.980 2.846,4.462 2.500,5.160 2.160 C 6.313 1.599,7.567 1.397,8.853 1.563 M7.706 4.290 C 7.482 4.363,7.355 4.491,7.293 4.705 C 7.257 4.827,7.253 5.106,7.259 6.816 C 7.267 8.786,7.267 8.787,7.325 8.896 C 7.398 9.033,7.538 9.157,7.671 9.204 C 7.803 9.250,8.197 9.250,8.329 9.204 C 8.462 9.157,8.602 9.033,8.675 8.896 C 8.733 8.787,8.733 8.786,8.741 6.816 C 8.749 4.664,8.749 4.662,8.596 4.481 C 8.472 4.333,8.339 4.284,8.040 4.276 C 7.893 4.272,7.743 4.278,7.706 4.290 M7.786 10.530 C 7.597 10.592,7.410 10.753,7.319 10.932 C 7.249 11.072,7.237 11.325,7.294 11.495 C 7.388 11.780,7.697 12.000,8.000 12.000 C 8.303 12.000,8.612 11.780,8.706 11.495 C 8.763 11.325,8.751 11.072,8.681 10.932 C 8.616 10.804,8.460 10.646,8.333 10.580 C 8.217 10.520,7.904 10.491,7.786 10.530 " stroke="none" fill-rule="evenodd" fill=""></path></g></svg>
+        </span>
+        <p class="cardInfo">Se produjo un error al actualizar el libro</p>
+      </div>
+    </div>
+  </div>
+
+  <!--------------------->
+
+
+  <!----- PRESTAMOS ----->
+
+  <div class="prestamoCompleted-successful">
+    <div class="cardInfo">
+      <div class="headerCardInfo">
+        <span class="icon-checked">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#fff" stroke-width="2" stroke-linecap="round"></path> </g></svg>
+        </span>
+        <p class="cardInfo">El prestamo ha sido completado</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="prestamoCompleted-unsuccessful">
+    <div class="cardInfo">
+      <div class="headerCardInfo">
+        <span class="icon-error">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M7.493 0.015 C 7.442 0.021,7.268 0.039,7.107 0.055 C 5.234 0.242,3.347 1.208,2.071 2.634 C 0.660 4.211,-0.057 6.168,0.009 8.253 C 0.124 11.854,2.599 14.903,6.110 15.771 C 8.169 16.280,10.433 15.917,12.227 14.791 C 14.017 13.666,15.270 11.933,15.771 9.887 C 15.943 9.186,15.983 8.829,15.983 8.000 C 15.983 7.171,15.943 6.814,15.771 6.113 C 14.979 2.878,12.315 0.498,9.000 0.064 C 8.716 0.027,7.683 -0.006,7.493 0.015 M8.853 1.563 C 9.967 1.707,11.010 2.136,11.944 2.834 C 12.273 3.080,12.920 3.727,13.166 4.056 C 13.727 4.807,14.142 5.690,14.330 6.535 C 14.544 7.500,14.544 8.500,14.330 9.465 C 13.916 11.326,12.605 12.978,10.867 13.828 C 10.239 14.135,9.591 14.336,8.880 14.444 C 8.456 14.509,7.544 14.509,7.120 14.444 C 5.172 14.148,3.528 13.085,2.493 11.451 C 2.279 11.114,1.999 10.526,1.859 10.119 C 1.618 9.422,1.514 8.781,1.514 8.000 C 1.514 6.961,1.715 6.075,2.160 5.160 C 2.500 4.462,2.846 3.980,3.413 3.413 C 3.980 2.846,4.462 2.500,5.160 2.160 C 6.313 1.599,7.567 1.397,8.853 1.563 M7.706 4.290 C 7.482 4.363,7.355 4.491,7.293 4.705 C 7.257 4.827,7.253 5.106,7.259 6.816 C 7.267 8.786,7.267 8.787,7.325 8.896 C 7.398 9.033,7.538 9.157,7.671 9.204 C 7.803 9.250,8.197 9.250,8.329 9.204 C 8.462 9.157,8.602 9.033,8.675 8.896 C 8.733 8.787,8.733 8.786,8.741 6.816 C 8.749 4.664,8.749 4.662,8.596 4.481 C 8.472 4.333,8.339 4.284,8.040 4.276 C 7.893 4.272,7.743 4.278,7.706 4.290 M7.786 10.530 C 7.597 10.592,7.410 10.753,7.319 10.932 C 7.249 11.072,7.237 11.325,7.294 11.495 C 7.388 11.780,7.697 12.000,8.000 12.000 C 8.303 12.000,8.612 11.780,8.706 11.495 C 8.763 11.325,8.751 11.072,8.681 10.932 C 8.616 10.804,8.460 10.646,8.333 10.580 C 8.217 10.520,7.904 10.491,7.786 10.530 " stroke="none" fill-rule="evenodd" fill=""></path></g></svg>
+        </span>
+        <p class="cardInfo">Se produjo un error al completar el prestamo</p>
+      </div>
+    </div>
+  </div>
+
+  <!--------------------->
+  
+  
+  <!----- INCIDENTES ----->
+
+  <div class="incident-successful">
+    <div class="cardInfo">
+      <div class="headerCardInfo">
+        <span class="icon-checked">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#fff" stroke-width="2" stroke-linecap="round"></path> </g></svg>
+        </span>
+        <p class="cardInfo">El incidente ha sido agregado</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="incident-unsuccessful">
+    <div class="cardInfo">
+      <div class="headerCardInfo">
+        <span class="icon-error">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M7.493 0.015 C 7.442 0.021,7.268 0.039,7.107 0.055 C 5.234 0.242,3.347 1.208,2.071 2.634 C 0.660 4.211,-0.057 6.168,0.009 8.253 C 0.124 11.854,2.599 14.903,6.110 15.771 C 8.169 16.280,10.433 15.917,12.227 14.791 C 14.017 13.666,15.270 11.933,15.771 9.887 C 15.943 9.186,15.983 8.829,15.983 8.000 C 15.983 7.171,15.943 6.814,15.771 6.113 C 14.979 2.878,12.315 0.498,9.000 0.064 C 8.716 0.027,7.683 -0.006,7.493 0.015 M8.853 1.563 C 9.967 1.707,11.010 2.136,11.944 2.834 C 12.273 3.080,12.920 3.727,13.166 4.056 C 13.727 4.807,14.142 5.690,14.330 6.535 C 14.544 7.500,14.544 8.500,14.330 9.465 C 13.916 11.326,12.605 12.978,10.867 13.828 C 10.239 14.135,9.591 14.336,8.880 14.444 C 8.456 14.509,7.544 14.509,7.120 14.444 C 5.172 14.148,3.528 13.085,2.493 11.451 C 2.279 11.114,1.999 10.526,1.859 10.119 C 1.618 9.422,1.514 8.781,1.514 8.000 C 1.514 6.961,1.715 6.075,2.160 5.160 C 2.500 4.462,2.846 3.980,3.413 3.413 C 3.980 2.846,4.462 2.500,5.160 2.160 C 6.313 1.599,7.567 1.397,8.853 1.563 M7.706 4.290 C 7.482 4.363,7.355 4.491,7.293 4.705 C 7.257 4.827,7.253 5.106,7.259 6.816 C 7.267 8.786,7.267 8.787,7.325 8.896 C 7.398 9.033,7.538 9.157,7.671 9.204 C 7.803 9.250,8.197 9.250,8.329 9.204 C 8.462 9.157,8.602 9.033,8.675 8.896 C 8.733 8.787,8.733 8.786,8.741 6.816 C 8.749 4.664,8.749 4.662,8.596 4.481 C 8.472 4.333,8.339 4.284,8.040 4.276 C 7.893 4.272,7.743 4.278,7.706 4.290 M7.786 10.530 C 7.597 10.592,7.410 10.753,7.319 10.932 C 7.249 11.072,7.237 11.325,7.294 11.495 C 7.388 11.780,7.697 12.000,8.000 12.000 C 8.303 12.000,8.612 11.780,8.706 11.495 C 8.763 11.325,8.751 11.072,8.681 10.932 C 8.616 10.804,8.460 10.646,8.333 10.580 C 8.217 10.520,7.904 10.491,7.786 10.530 " stroke="none" fill-rule="evenodd" fill=""></path></g></svg>
+        </span>
+        <p class="cardInfo">Se produjo un error al agregar el incidente</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="edit-incident-successful">
+    <div class="cardInfo">
+      <div class="headerCardInfo">
+        <span class="icon-checked">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#fff" stroke-width="2" stroke-linecap="round"></path> </g></svg>
+        </span>
+        <p class="cardInfo">El incidente ha sido actualizado</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="edit-incident-unsuccessful">
+    <div class="cardInfo">
+      <div class="headerCardInfo">
+        <span class="icon-error">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M7.493 0.015 C 7.442 0.021,7.268 0.039,7.107 0.055 C 5.234 0.242,3.347 1.208,2.071 2.634 C 0.660 4.211,-0.057 6.168,0.009 8.253 C 0.124 11.854,2.599 14.903,6.110 15.771 C 8.169 16.280,10.433 15.917,12.227 14.791 C 14.017 13.666,15.270 11.933,15.771 9.887 C 15.943 9.186,15.983 8.829,15.983 8.000 C 15.983 7.171,15.943 6.814,15.771 6.113 C 14.979 2.878,12.315 0.498,9.000 0.064 C 8.716 0.027,7.683 -0.006,7.493 0.015 M8.853 1.563 C 9.967 1.707,11.010 2.136,11.944 2.834 C 12.273 3.080,12.920 3.727,13.166 4.056 C 13.727 4.807,14.142 5.690,14.330 6.535 C 14.544 7.500,14.544 8.500,14.330 9.465 C 13.916 11.326,12.605 12.978,10.867 13.828 C 10.239 14.135,9.591 14.336,8.880 14.444 C 8.456 14.509,7.544 14.509,7.120 14.444 C 5.172 14.148,3.528 13.085,2.493 11.451 C 2.279 11.114,1.999 10.526,1.859 10.119 C 1.618 9.422,1.514 8.781,1.514 8.000 C 1.514 6.961,1.715 6.075,2.160 5.160 C 2.500 4.462,2.846 3.980,3.413 3.413 C 3.980 2.846,4.462 2.500,5.160 2.160 C 6.313 1.599,7.567 1.397,8.853 1.563 M7.706 4.290 C 7.482 4.363,7.355 4.491,7.293 4.705 C 7.257 4.827,7.253 5.106,7.259 6.816 C 7.267 8.786,7.267 8.787,7.325 8.896 C 7.398 9.033,7.538 9.157,7.671 9.204 C 7.803 9.250,8.197 9.250,8.329 9.204 C 8.462 9.157,8.602 9.033,8.675 8.896 C 8.733 8.787,8.733 8.786,8.741 6.816 C 8.749 4.664,8.749 4.662,8.596 4.481 C 8.472 4.333,8.339 4.284,8.040 4.276 C 7.893 4.272,7.743 4.278,7.706 4.290 M7.786 10.530 C 7.597 10.592,7.410 10.753,7.319 10.932 C 7.249 11.072,7.237 11.325,7.294 11.495 C 7.388 11.780,7.697 12.000,8.000 12.000 C 8.303 12.000,8.612 11.780,8.706 11.495 C 8.763 11.325,8.751 11.072,8.681 10.932 C 8.616 10.804,8.460 10.646,8.333 10.580 C 8.217 10.520,7.904 10.491,7.786 10.530 " stroke="none" fill-rule="evenodd" fill=""></path></g></svg>
+        </span>
+        <p class="cardInfo">Se produjo un error al actualizar el incidente</p>
+      </div>
+    </div>
+  </div>
+
+  <!--------------------->
+
+  <!------------------------------------------->
+  <section id="content">
+    <section class="vista1 vistasTarget">
+      <h1>Activos</h1>
+      <br />
+      <div id="mainTable" class="target">
+        <div class="table-header">
+          <div class="group" id="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+              <g>
+                <path
+                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                </path>
+              </g>
+            </svg>
+            <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+          </div>
+
+          <div class="addBtn">
+            <button type="button" class="button">
+              <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+            </button>
+          </div>
+        </div>
+        <br />
+        <div class="tabla-container">
+          <table id="tablaActivos">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Año</th>
+                <th>Paginado</th>
+                <th>Editorial</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="vista2 vistasTarget">
+      <h1>Bajas</h1>
+      <br />
+      <div id="mainTable" class="target">
+        <div class="table-header">
+          <div class="group" id="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+              <g>
+                <path
+                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                </path>
+              </g>
+            </svg>
+            <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+          </div>
+
+          <div class="addBtn">
+            <button type="button" class="button">
+              <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+            </button>
+          </div>
+        </div>
+        <br />
+        <div class="tabla-container">
+          <table id="tablaBajas">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Año</th>
+                <th>Paginado</th>
+                <th>Editorial</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="vista3 vistasTarget">
+      <h1>Lotes</h1>
+      <br />
+      <div id="mainTable" class="target">
+        <div class="group">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <g>
+              <path
+                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+              </path>
+            </g>
+          </svg>
+          <input class="input searchInput" type="search" placeholder="Buscar lote(s)" />
+        </div>
+        <br />
+        <div class="tabla-container">
+          <table id="tablaLotes">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Cantidad</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="vista4 vistasTarget">
+      <h1>Prestamos</h1>
+      <br />
+      <div id="mainTable" class="target">
+        <div class="group">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <g>
+              <path
+                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+              </path>
+            </g>
+          </svg>
+          <input class="input searchInput" type="search" placeholder="Buscar prestamo(s)" />
+        </div>
+        <br />
+        <div class="tabla-container">
+          <table id="tablaPrestamos">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Matrícula</th>
+                <th>Email</th>
+                <th>id_libro</th>
+                <th>Título</th>
+                <th>fecha_inicio</th>
+                <th>fecha_devolución</th>
+                <th>Estado</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="vista5 vistasTarget">
+      <h1>Incidentes</h1>
+      <br />
+      <div id="mainTable" class="target">
+        <div class="table-header">
+          <div class="group" id="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+              <g>
+                <path
+                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                </path>
+              </g>
+            </svg>
+            <input class="input searchInput" type="search" placeholder="Buscar incidente(s)" />
+          </div>
+
+          <div class="incidentBtn">
+            <button type="button" class="button">
+              <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+            </button>
+          </div>
+        </div>
+        <br />
+        <div class="tabla-container">
+          <table id="tablaIncidentes">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Matrícula</th>
+                <th>Email</th>
+                <th>id_libro</th>
+                <th>Título</th>
+                <th>Fecha</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="vista6 vistasTarget">
+      <h1>Estadísticas</h1>
+      <br />
+      <div id="mainTable" class="target targetStadistics">
+        
+      </div>
+    </section>
+  </section>
+</body>
+
+</html>
