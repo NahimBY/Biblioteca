@@ -145,17 +145,13 @@ $(document).ready(function () {
   const username = localStorage.getItem('userNombre');
   $('.username').text(username);
 
-  function insertarRegistros(tablaId, estado, registros) {
+  function insertarRegistros(tablaId, registros) {
     var tbody = $(`#${tablaId} tbody`);
     tbody.empty();
-
-    var registrosFiltrados = registros.filter(function (registro) {
-      return registro.Estado === estado;
-    });
-
-    registrosFiltrados.forEach(function (registro) {
+  
+    registros.forEach(function (registro) {
       var fila = $('<tr>');
-
+  
       fila.append($('<td class="inspectButton">').text(registro.id_libro));
       fila.append($('<td class="inspectButton">').text(registro.Titulo));
       fila.append($('<td class="inspectButton">').text(registro.Autor));
@@ -163,35 +159,49 @@ $(document).ready(function () {
       fila.append($('<td class="inspectButton">').text(registro.Paginado));
       fila.append($('<td class="inspectButton">').text(registro.Editorial));
       fila.append($('<td class="inspectButton">').html(`
-            <button class="btn" title="Editar">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-            </button>
-        `));
-
+        <button class="btn" title="Editar">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+          </svg>
+        </button>
+      `));
+  
       tbody.append(fila);
     });
   }
-
+  
   function insertarRegistrosLotes(tablaId, registros) {
     var tbody = $(`#${tablaId} tbody`);
     tbody.empty();
-
+  
     registros.forEach(function (registro) {
       var fila = $('<tr>');
 
+  
       fila.append($('<td>').text(registro.id_libro));
       fila.append($('<td>').text(registro.Titulo));
       fila.append($('<td>').text(registro.Autor));
       fila.append($('<td>').text(registro.Cantidad));
-      fila.append($('<td>').text(registro.Estado));
+      
+      var estadoTd = $('<td>');
+      if (registro.Estado === 'Disponible') {
+        estadoTd.html('<span class="status-label status-available">Disponible</span>');
+      } else if (registro.Estado === 'No disponible') {
+        estadoTd.html('<span class="status-label status-unavailable">No disponible</span>');
+      }
 
+      fila.append(estadoTd);
       tbody.append(fila);
     });
   }
-
+  
   function generosLibros(registros) {
-    insertarRegistros('tablaActivos', 'Disponible', registros);
-    insertarRegistros('tablaBajas', 'No disponible', registros);
+    insertarRegistros('tablaActivos', registros.filter(r => r.Estado === 'Disponible'));
+    insertarRegistros('tablaBajas', registros.filter(r => r.Estado === 'No disponible'));
     insertarRegistrosLotes('tablaLotes', registros);
     insertarRegistrosLotes('tablaLotes', registros);
   }
@@ -209,30 +219,34 @@ $(document).ready(function () {
     window.location.href = '../index.html';
   });
 
-  $.ajax({
-    url: 'http://localhost:3000/api/mostrarTodosLosLibros',
-    method: 'GET',
-    success: function (data) {
-      // console.log(data);
-      generosLibros(data);
-    },
-    error: function (error) {
-      console.error('Error al obtener los libros activos:', error);
-    }
-  });
 
-  $(document).on('click', '.vistasPanel', function(){
-    $.ajax({
-      url: 'http://localhost:3000/api/mostrarTodosLosLibros',
-      method: 'GET',
-      success: function (data) {
-        generosLibros(data);
-      },
-      error: function (error) {
-        console.error('Error al obtener los libros activos:', error);
-      }
-    });
-  });
+  ///////////////////////////////////////////////////////////////////////////////////
+
+  
+  // $.ajax({
+  //   url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+  //   method: 'GET',
+  //   success: function (data) {
+  //     // console.log(data);
+  //     generosLibros(data);
+  //   },
+  //   error: function (error) {
+  //     console.error('Error al obtener los libros activos:', error);
+  //   }
+  // });
+
+  // $(document).on('click', '.vistasPanel', function(){
+  //   $.ajax({
+  //     url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+  //     method: 'GET',
+  //     success: function (data) {
+  //       generosLibros(data);
+  //     },
+  //     error: function (error) {
+  //       console.error('Error al obtener los libros activos:', error);
+  //     }
+  //   });
+  // });
 
   /////////////////////////////////////////////////////////////////////////////
 
@@ -260,7 +274,7 @@ $(document).ready(function () {
       fila.append($('<td class="btnCompleted">').text(formatDate(registro.fecha_devolucion)));
       fila.append($('<td class="btnCompleted">').text(registro.estado));
       fila.append($('<td class="btnCompleted">').html(`
-        <button class="btn" title="Completar">
+        <button title="Completar">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7.48334 5.25942C6.33891 5.38732 5.42286 6.29057 5.29045 7.42268C4.93476 10.4638 4.93476 13.5361 5.29045 16.5772C5.42286 17.7093 6.33891 18.6126 7.48334 18.7405C10.4602 19.0732 13.5398 19.0732 16.5166 18.7405C17.6611 18.6126 18.5771 17.7093 18.7095 16.5772C18.9651 14.3921 19.037 12.1909 18.9253 9.99668C18.9224 9.94002 18.9436 9.88475 18.9837 9.84463L20.0225 8.80585C20.1427 8.68562 20.3482 8.7608 20.3609 8.93036C20.557 11.5353 20.5031 14.1543 20.1994 16.7515C19.9845 18.5884 18.5096 20.0271 16.6832 20.2312C13.5957 20.5763 10.4043 20.5763 7.31673 20.2312C5.49035 20.0271 4.01545 18.5884 3.8006 16.7515C3.43137 13.5945 3.43137 10.4053 3.8006 7.24843C4.01545 5.41146 5.49035 3.97282 7.31673 3.7687C10.4043 3.42362 13.5957 3.42362 16.6832 3.7687C17.3265 3.84059 17.9261 4.06562 18.4425 4.40725C18.5441 4.47448 18.5542 4.61732 18.468 4.70346L17.6652 5.50635C17.5995 5.57202 17.4976 5.58307 17.4158 5.5392C17.1423 5.39271 16.8385 5.29539 16.5166 5.25942C13.5398 4.92671 10.4602 4.92671 7.48334 5.25942Z" fill="#053124"></path> <path d="M21.0303 6.03028C21.3232 5.73738 21.3232 5.26251 21.0303 4.96962C20.7374 4.67672 20.2625 4.67672 19.9696 4.96962L11.5 13.4393L9.0303 10.9696C8.73741 10.6767 8.26253 10.6767 7.96964 10.9696C7.67675 11.2625 7.67675 11.7374 7.96964 12.0303L10.9696 15.0303C11.2625 15.3232 11.7374 15.3232 12.0303 15.0303L21.0303 6.03028Z" fill="#053124"></path> </g></svg>
         </button>
       `));
@@ -270,31 +284,31 @@ $(document).ready(function () {
 
   }
 
-  $.ajax({
-    url: 'http://localhost:3000/api/mostrarPrestamosAdmin',
-    method: 'GET',
-    success: function (data) {
-      // console.log(data);
-      insertarPrestamos(data);
-    },
-    error: function (error) {
-      console.error('Error al obtener los prestamos:', error);
-    }
-  });
+  // $.ajax({
+  //   url: 'http://localhost:3000/api/mostrarPrestamosAdmin',
+  //   method: 'GET',
+  //   success: function (data) {
+  //     // console.log(data);
+  //     insertarPrestamos(data);
+  //   },
+  //   error: function (error) {
+  //     console.error('Error al obtener los prestamos:', error);
+  //   }
+  // });
 
-  $(document).on('click', '.vistasPanel', function(){
-    $.ajax({
-      url: 'http://localhost:3000/api/mostrarPrestamosAdmin',
-      method: 'GET',
-      success: function (data) {
-        // console.log(data);
-        insertarPrestamos(data);
-      },
-      error: function (error) {
-        console.error('Error al obtener los prestamos:', error);
-      }
-    });
-  });
+  // $(document).on('click', '.vistasPanel', function(){
+  //   $.ajax({
+  //     url: 'http://localhost:3000/api/mostrarPrestamosAdmin',
+  //     method: 'GET',
+  //     success: function (data) {
+  //       // console.log(data);
+  //       insertarPrestamos(data);
+  //     },
+  //     error: function (error) {
+  //       console.error('Error al obtener los prestamos:', error);
+  //     }
+  //   });
+  // });
 
   /////////////////////////////////////////////////////////////////////////////
 
@@ -414,7 +428,7 @@ $(document).ready(function () {
 
     limpiarMensajesError();
 
-    ajustarEstado();
+    ajustarEstado(data.Estado);
   }
   
   function actualizarLibro(idLibro) {
@@ -487,12 +501,12 @@ $(document).ready(function () {
     });
   }
 
-  function ajustarEstado() {
+  function ajustarEstado(estado) {
     const cantidad = $('#cantidad').val();
     if (cantidad == 1) {
         $('#estado').val('No disponible').prop('disabled', true);
     } else {
-        $('#estado').val('Disponible').prop('disabled', false);
+        $('#estado').val(estado || "Disponible").prop('disabled', false);
     }
   }
 
@@ -620,32 +634,6 @@ $(document).ready(function () {
     });
 
   }
-
-  $.ajax({
-    url: 'http://localhost:3000/api/mostrarIncidentes',
-    method: 'GET',
-    success: function (data) {
-      // console.log(data);
-      insertarIncidentes(data);
-    },
-    error: function (error) {
-      console.error('Error al obtener los incidentes:', error);
-    }
-  });
-
-  $(document).on('click', '.vistasPanel', function(){
-    $.ajax({
-      url: 'http://localhost:3000/api/mostrarIncidentes',
-      method: 'GET',
-      success: function (data) {
-        // console.log(data);
-        insertarIncidentes(data);
-      },
-      error: function (error) {
-        console.error('Error al obtener los incidentes:', error);
-      }
-    });
-  });
 
  /////////////////////////////////////////////////////////////////////////////
 
@@ -857,21 +845,6 @@ $(document).ready(function () {
 
   /////////////////////////////////////////////////////////////////////////////
 
-  $(document).on('click', '.vistasPanel', function(){
-    $.ajax({
-      url: 'http://localhost:3000/api/mostrarIncidentes',
-      method: 'GET',
-      success: function (data) {
-        insertarIncidentes(data);
-      },
-      error: function (error) {
-        console.error('Error al obtener los incidentes:', error);
-      }
-    });
-  });
-
-  /////////////////////////////////////////////////////////////////////////////
-
   $('#incident-id_libro').prop('disabled', true);
 
   $('#incident-matricula').on('input', function() {
@@ -1071,6 +1044,560 @@ $(document).ready(function () {
     return isValid;
   }
 
+
+
   /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+
+
+
+  var currentPageActivos = 1;
+  var recordsPerPageActivos = 5;
+
+  var currentPageBajas = 1;
+  var recordsPerPageBajas = 5;
+
+  var currentPageLotes = 1;
+  var recordsPerPageLotes = 5;  
+
+  var currentPagePrestamos = 1;
+  var recordsPerPagePrestamos = 5;
+
+  var currentPageIncidentes = 1;
+  var recordsPerPageIncidentes = 5;
+
+  var allRecords = [];
+
+  $('.entriesActivos').change(function() {
+    recordsPerPageActivos = parseInt($(this).val());
+    currentPageActivos = 1;
+    paginateRecords();
+  });
+
+  $('.entriesBajas').change(function() {
+    recordsPerPageBajas = parseInt($(this).val());
+    currentPageBajas = 1;
+    paginateRecords();
+  });
+
+  $('.entriesLotes').change(function() {
+    recordsPerPageLotes = parseInt($(this).val());
+    currentPageLotes = 1;
+    paginateLotes();
+  });
+
+  $('.entriesPrestamos').change(function() {
+    recordsPerPagePrestamos = parseInt($(this).val());
+    currentPagePrestamos = 1;
+    paginatePrestamos();
+  });
+
+  $('.entriesIncidentes').change(function() {
+    recordsPerPageIncidentes = parseInt($(this).val());
+    currentPageIncidentes = 1;
+    paginateIncidentes();
+  });
+
+  function paginateRecords() {
+    var startActivos = (currentPageActivos - 1) * recordsPerPageActivos;
+    var endActivos = startActivos + recordsPerPageActivos;
+    var startBajas = (currentPageBajas - 1) * recordsPerPageBajas;
+    var endBajas = startBajas + recordsPerPageBajas;
+
+    var activos = allRecords.filter(r => r.Estado === 'Disponible').slice(startActivos, endActivos);
+    var bajas = allRecords.filter(r => r.Estado === 'No disponible').slice(startBajas, endBajas);
+
+    insertarRegistros('tablaActivos', activos);
+    insertarRegistros('tablaBajas', bajas);
+    updatePaginationControls();
+  }
+
+  function paginateLotes() {
+      var startLotes = (currentPageLotes - 1) * recordsPerPageLotes;
+      var endLotes = startLotes + recordsPerPageLotes;
+
+      var lotes = allRecordsLotes.slice(startLotes, endLotes);
+
+      insertarRegistrosLotes('tablaLotes', lotes);
+      updatePaginationControlsLotes();
+  }
+
+  function paginatePrestamos() {
+      var startPrestamos = (currentPagePrestamos - 1) * recordsPerPagePrestamos;
+      var endPrestamos = startPrestamos + recordsPerPagePrestamos;
+
+      var prestamos = allRecordsPrestamos.slice(startPrestamos, endPrestamos);
+
+      insertarPrestamos(prestamos);
+      updatePaginationControlsPrestamos();
+  }
+
+  function paginateIncidentes() {
+      var startIncidentes = (currentPageIncidentes - 1) * recordsPerPageIncidentes;
+      var endIncidentes = startIncidentes + recordsPerPageIncidentes;
+
+      var incidentes = allRecordsIncidentes.slice(startIncidentes, endIncidentes);
+
+      insertarIncidentes(incidentes);
+      updatePaginationControlsIncidentes();
+  }
+
+  function updatePaginationControls() {
+      var totalPagesActivos = Math.ceil(allRecords.filter(r => r.Estado === 'Disponible').length / recordsPerPageActivos);
+      var totalPagesBajas = Math.ceil(allRecords.filter(r => r.Estado === 'No disponible').length / recordsPerPageBajas);
+
+      updatePageNumbers('Activos', totalPagesActivos);
+      updatePageNumbers('Bajas', totalPagesBajas);
+
+      $('#prev-page').attr('disabled', currentPageActivos === 1);
+      $('#next-page').attr('disabled', currentPageActivos === totalPagesActivos);
+      $('#prev-page-bajas').attr('disabled', currentPageBajas === 1);
+      $('#next-page-bajas').attr('disabled', currentPageBajas === totalPagesBajas);
+  }
+
+  function updatePaginationControlsLotes() {
+      var totalPagesLotes = Math.ceil(allRecordsLotes.length / recordsPerPageLotes);
+
+      updatePageNumbersLotes(totalPagesLotes);
+
+      $('#prev-page-lotes').attr('disabled', currentPageLotes === 1);
+      $('#next-page-lotes').attr('disabled', currentPageLotes === totalPagesLotes);
+  }
+
+  function updatePaginationControlsPrestamos() {
+      var totalPagesPrestamos = Math.ceil(allRecordsPrestamos.length / recordsPerPagePrestamos);
+
+      updatePageNumbersPrestamos(totalPagesPrestamos);
+
+      $('#prev-page-prestamos').attr('disabled', currentPagePrestamos === 1);
+      $('#next-page-prestamos').attr('disabled', currentPagePrestamos === totalPagesPrestamos);
+  }
+
+  function updatePaginationControlsIncidentes() {
+      var totalPagesIncidentes = Math.ceil(allRecordsIncidentes.length / recordsPerPageIncidentes);
+
+      updatePageNumbersIncidentes(totalPagesIncidentes);
+
+      $('#prev-page-incidentes').attr('disabled', currentPageIncidentes === 1);
+      $('#next-page-incidentes').attr('disabled', currentPageIncidentes === totalPagesIncidentes);
+  }
+
+  const MAX_VISIBLE_PAGES = 5; // Número máximo de páginas visibles
+
+  function updatePageNumbers(type, totalPages) {
+    var container = (type === 'Activos') ? $('#page-numbers') : $('#page-numbers-bajas');
+    container.empty();
+
+    if (totalPages <= MAX_VISIBLE_PAGES) {
+        for (var i = 1; i <= totalPages; i++) {
+            var pageNumber = $('<span>').text(i).addClass('page-number');
+            if (i === (type === 'Activos' ? currentPageActivos : currentPageBajas)) {
+                pageNumber.addClass('active');
+            }
+            pageNumber.click((function(page) {
+                return function() {
+                    if (type === 'Activos') {
+                        currentPageActivos = page;
+                    } else {
+                        currentPageBajas = page;
+                    }
+                    paginateRecords();
+                };
+            })(i));
+            container.append(pageNumber);
+        }
+    } else {
+        var startPage, endPage;
+
+        if (currentPageActivos <= Math.ceil(MAX_VISIBLE_PAGES / 2)) {
+            startPage = 1;
+            endPage = MAX_VISIBLE_PAGES;
+        } else if (currentPageActivos + Math.floor(MAX_VISIBLE_PAGES / 2) >= totalPages) {
+            startPage = totalPages - MAX_VISIBLE_PAGES + 1;
+            endPage = totalPages;
+        } else {
+            startPage = currentPageActivos - Math.floor(MAX_VISIBLE_PAGES / 2);
+            endPage = currentPageActivos + Math.floor(MAX_VISIBLE_PAGES / 2);
+        }
+
+        for (var i = startPage; i <= endPage; i++) {
+            var pageNumber = $('<span>').text(i).addClass('page-number');
+            if (i === (type === 'Activos' ? currentPageActivos : currentPageBajas)) {
+                pageNumber.addClass('active');
+            }
+            pageNumber.click((function(page) {
+                return function() {
+                    if (type === 'Activos') {
+                        currentPageActivos = page;
+                    } else {
+                        currentPageBajas = page;
+                    }
+                    paginateRecords();
+                };
+            })(i));
+            container.append(pageNumber);
+        }
+
+        if (startPage > 1) {
+            container.prepend($('<span>').text('...').addClass('dots'));
+        }
+
+        if (endPage < totalPages) {
+            container.append($('<span>').text('...').addClass('dots'));
+        }
+    }
+  }
+
+  function updatePageNumbersLotes(totalPages) {
+    var container = $('#page-numbers-lotes');
+    container.empty();
+
+    if (totalPages <= MAX_VISIBLE_PAGES) {
+        for (var i = 1; i <= totalPages; i++) {
+            var pageNumber = $('<span>').text(i).addClass('page-number');
+            if (i === currentPageLotes) {
+                pageNumber.addClass('active');
+            }
+            pageNumber.click((function(page) {
+                return function() {
+                    currentPageLotes = page;
+                    paginateLotes();
+                };
+            })(i));
+            container.append(pageNumber);
+        }
+    } else {
+        var startPage, endPage;
+
+        if (currentPageLotes <= Math.ceil(MAX_VISIBLE_PAGES / 2)) {
+            startPage = 1;
+            endPage = MAX_VISIBLE_PAGES;
+        } else if (currentPageLotes + Math.floor(MAX_VISIBLE_PAGES / 2) >= totalPages) {
+            startPage = totalPages - MAX_VISIBLE_PAGES + 1;
+            endPage = totalPages;
+        } else {
+            startPage = currentPageLotes - Math.floor(MAX_VISIBLE_PAGES / 2);
+            endPage = currentPageLotes + Math.floor(MAX_VISIBLE_PAGES / 2);
+        }
+
+        for (var i = startPage; i <= endPage; i++) {
+            var pageNumber = $('<span>').text(i).addClass('page-number');
+            if (i === currentPageLotes) {
+                pageNumber.addClass('active');
+            }
+            pageNumber.click((function(page) {
+                return function() {
+                    currentPageLotes = page;
+                    paginateLotes();
+                };
+            })(i));
+            container.append(pageNumber);
+        }
+
+        if (startPage > 1) {
+            container.prepend($('<span>').text('...').addClass('dots'));
+        }
+
+        if (endPage < totalPages) {
+            container.append($('<span>').text('...').addClass('dots'));
+        }
+    }
+  }
+
+  function updatePageNumbersPrestamos(totalPages) {
+    var container = $('#page-numbers-prestamos');
+    container.empty();
+
+    if (totalPages <= MAX_VISIBLE_PAGES) {
+        for (var i = 1; i <= totalPages; i++) {
+            var pageNumber = $('<span>').text(i).addClass('page-number');
+            if (i === currentPagePrestamos) {
+                pageNumber.addClass('active');
+            }
+            pageNumber.click((function(page) {
+                return function() {
+                    currentPagePrestamos = page;
+                    paginatePrestamos();
+                };
+            })(i));
+            container.append(pageNumber);
+        }
+    } else {
+        var startPage, endPage;
+
+        if (currentPagePrestamos <= Math.ceil(MAX_VISIBLE_PAGES / 2)) {
+            startPage = 1;
+            endPage = MAX_VISIBLE_PAGES;
+        } else if (currentPagePrestamos + Math.floor(MAX_VISIBLE_PAGES / 2) >= totalPages) {
+            startPage = totalPages - MAX_VISIBLE_PAGES + 1;
+            endPage = totalPages;
+        } else {
+            startPage = currentPagePrestamos - Math.floor(MAX_VISIBLE_PAGES / 2);
+            endPage = currentPagePrestamos + Math.floor(MAX_VISIBLE_PAGES / 2);
+        }
+
+        for (var i = startPage; i <= endPage; i++) {
+            var pageNumber = $('<span>').text(i).addClass('page-number');
+            if (i === currentPagePrestamos) {
+                pageNumber.addClass('active');
+            }
+            pageNumber.click((function(page) {
+                return function() {
+                    currentPagePrestamos = page;
+                    paginatePrestamos();
+                };
+            })(i));
+            container.append(pageNumber);
+        }
+
+        if (startPage > 1) {
+            container.prepend($('<span>').text('...').addClass('dots'));
+        }
+
+        if (endPage < totalPages) {
+            container.append($('<span>').text('...').addClass('dots'));
+        }
+    }
+  }
+
+  function updatePageNumbersIncidentes(totalPages) {
+    var container = $('#page-numbers-incidentes');
+    container.empty();
+
+    if (totalPages <= MAX_VISIBLE_PAGES) {
+        for (var i = 1; i <= totalPages; i++) {
+            var pageNumber = $('<span>').text(i).addClass('page-number');
+            if (i === currentPageIncidentes) {
+                pageNumber.addClass('active');
+            }
+            pageNumber.click((function(page) {
+                return function() {
+                    currentPageIncidentes = page;
+                    paginateIncidentes();
+                };
+            })(i));
+            container.append(pageNumber);
+        }
+    } else {
+        var startPage, endPage;
+
+        if (currentPageIncidentes <= Math.ceil(MAX_VISIBLE_PAGES / 2)) {
+            startPage = 1;
+            endPage = MAX_VISIBLE_PAGES;
+        } else if (currentPageIncidentes + Math.floor(MAX_VISIBLE_PAGES / 2) >= totalPages) {
+            startPage = totalPages - MAX_VISIBLE_PAGES + 1;
+            endPage = totalPages;
+        } else {
+            startPage = currentPageIncidentes - Math.floor(MAX_VISIBLE_PAGES / 2);
+            endPage = currentPageIncidentes + Math.floor(MAX_VISIBLE_PAGES / 2);
+        }
+
+        for (var i = startPage; i <= endPage; i++) {
+            var pageNumber = $('<span>').text(i).addClass('page-number');
+            if (i === currentPageIncidentes) {
+                pageNumber.addClass('active');
+            }
+            pageNumber.click((function(page) {
+                return function() {
+                    currentPageIncidentes = page;
+                    paginateIncidentes();
+                };
+            })(i));
+            container.append(pageNumber);
+        }
+
+        if (startPage > 1) {
+            container.prepend($('<span>').text('...').addClass('dots'));
+        }
+
+        if (endPage < totalPages) {
+            container.append($('<span>').text('...').addClass('dots'));
+        }
+    }
+  }
+
+  $('#prev-page').click(function() {
+      if (currentPageActivos > 1) {
+          currentPageActivos--;
+          paginateRecords();
+      }
+  });
+
+  $('#next-page').click(function() {
+      var totalPagesActivos = Math.ceil(allRecords.filter(r => r.Estado === 'Disponible').length / recordsPerPageActivos);
+      if (currentPageActivos < totalPagesActivos) {
+          currentPageActivos++;
+          paginateRecords();
+      }
+  });
+
+  $('#prev-page-bajas').click(function() {
+      if (currentPageBajas > 1) {
+          currentPageBajas--;
+          paginateRecords();
+      }
+  });
+
+  $('#next-page-bajas').click(function() {
+      var totalPagesBajas = Math.ceil(allRecords.filter(r => r.Estado === 'No disponible').length / recordsPerPageBajas);
+      if (currentPageBajas < totalPagesBajas) {
+          currentPageBajas++;
+          paginateRecords();
+      }
+  });
+
+  // Similar click handlers for Lotes, Prestamos, Incidentes
+  $('#prev-page-lotes').click(function() {
+      if (currentPageLotes > 1) {
+          currentPageLotes--;
+          paginateLotes();
+      }
+  });
+
+  $('#next-page-lotes').click(function() {
+      var totalPagesLotes = Math.ceil(allRecordsLotes.length / recordsPerPageLotes);
+      if (currentPageLotes < totalPagesLotes) {
+          currentPageLotes++;
+          paginateLotes();
+      }
+  });
+
+  $('#prev-page-prestamos').click(function() {
+      if (currentPagePrestamos > 1) {
+          currentPagePrestamos--;
+          paginatePrestamos();
+      }
+  });
+
+  $('#next-page-prestamos').click(function() {
+      var totalPagesPrestamos = Math.ceil(allRecordsPrestamos.length / recordsPerPagePrestamos);
+      if (currentPagePrestamos < totalPagesPrestamos) {
+          currentPagePrestamos++;
+          paginatePrestamos();
+      }
+  });
+
+  $('#prev-page-incidentes').click(function() {
+      if (currentPageIncidentes > 1) {
+          currentPageIncidentes--;
+          paginateIncidentes();
+      }
+  });
+
+  $('#next-page-incidentes').click(function() {
+      var totalPagesIncidentes = Math.ceil(allRecordsIncidentes.length / recordsPerPageIncidentes);
+      if (currentPageIncidentes < totalPagesIncidentes) {
+          currentPageIncidentes++;
+          paginateIncidentes();
+      }
+  });
+
+  // Fetch records and initialize pagination for Lotes, Prestamos, Incidentes
+
+  $.ajax({
+    url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+    method: 'GET',
+    success: function (data) {
+      allRecords = data;
+      paginateRecords();
+    },
+    error: function (error) {
+      console.error('Error al obtener los libros:', error);
+    }
+  });
+
+  $.ajax({
+      url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+      method: 'GET',
+      success: function(data) {
+          allRecordsLotes = data;
+          paginateLotes();
+      },
+      error: function(error) {
+          console.error('Error al obtener los lotes:', error);
+      }
+  });
+
+  $.ajax({
+      url: 'http://localhost:3000/api/mostrarPrestamosAdmin',
+      method: 'GET',
+      success: function(data) {
+          allRecordsPrestamos = data;
+          paginatePrestamos();
+      },
+      error: function(error) {
+          console.error('Error al obtener los prestamos:', error);
+      }
+  });
+
+  $.ajax({
+      url: 'http://localhost:3000/api/mostrarIncidentes',
+      method: 'GET',
+      success: function(data) {
+          allRecordsIncidentes = data;
+          paginateIncidentes();
+      },
+      error: function(error) {
+          console.error('Error al obtener los incidentes:', error);
+      }
+  });
+
+
+
+  $(document).on('click', '.vistasPanel', function(){
+    $.ajax({
+      url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+      method: 'GET',
+      success: function (data) {
+        allRecords = data;
+        paginateRecords();
+
+      },
+      error: function (error) {
+        console.error('Error al obtener los libros:', error);
+      }
+    });
+
+    $.ajax({
+      url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+      method: 'GET',
+      success: function(data) {
+          allRecordsLotes = data;
+          paginateLotes();
+      },
+      error: function(error) {
+          console.error('Error al obtener los lotes:', error);
+      }
+    });
+
+    $.ajax({
+      url: 'http://localhost:3000/api/mostrarPrestamosAdmin',
+      method: 'GET',
+      success: function (data) {
+        allRecordsPrestamos = data;
+        paginatePrestamos();
+      },
+      error: function (error) {
+        console.error('Error al obtener los prestamos:', error);
+      }
+    });
+
+    $.ajax({
+      url: 'http://localhost:3000/api/mostrarPrestamosAdmin',
+      method: 'GET',
+      success: function (data) {
+        allRecordsPrestamos = data;
+        paginatePrestamos();
+      },
+      error: function (error) {
+        console.error('Error al obtener los prestamos:', error);
+      }
+    });
+  });
 
 });

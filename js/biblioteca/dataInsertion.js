@@ -190,26 +190,37 @@ $(document).ready(function () {
           }
         });
   
-        $('#fecha-ini').off('change').on('change', function () {
-          var fechaInicialVal = $(this).val();
-          var fechaInicial = new Date($(this).val());
+
+        function setInitialAndReturnDates() {
           var hoy = new Date();
-  
+          var year = hoy.getFullYear();
+          var month = String(hoy.getMonth() + 1).padStart(2, '0');
+          var day = String(hoy.getDate()).padStart(2, '0');
+          var fechaHoyFormatted = `${year}-${month}-${day}`;
+      
+          $('#fecha-ini').val(fechaHoyFormatted);
+          calcularFechaDevolucion(fechaHoyFormatted);
+        }
+      
+        // Función para calcular y establecer la fecha de devolución
+        function calcularFechaDevolucion(fechaInicialVal) {
+          var fechaInicial = new Date(fechaInicialVal);
+          var hoy = new Date();
+      
           if (fechaInicialVal === '' || isNaN(Date.parse(fechaInicialVal))) {
             $('.prestar').attr('disabled', true);
             $('.prestar').css({
-                'pointer-events': 'none',
-                'opacity': '0.5'
+              'pointer-events': 'none',
+              'opacity': '0.5'
             });
             $('.errorDate').text('Favor de ingresar una fecha.');
             $('#fecha-dev').val('');
             return;
           }
-          
+      
           var fechaInicialString = Date.parse(fechaInicial.toISOString().split('T')[0]);
           var hoyString = Date.parse(hoy.toISOString().split('T')[0]);
-    
-  
+      
           if (fechaInicialString < hoyString) {
             $('.prestar').attr('disabled', true);
             $('.prestar').css({
@@ -225,18 +236,28 @@ $(document).ready(function () {
               'opacity': '1'
             });
             $('.errorDate').text(''); // Clear error message if date is valid
-  
+      
             var fechaDevolucion = new Date(fechaInicial);
             fechaDevolucion.setDate(fechaDevolucion.getDate() + 5);
-  
+      
             var year = fechaDevolucion.getFullYear();
             var month = String(fechaDevolucion.getMonth() + 1).padStart(2, '0');
             var day = String(fechaDevolucion.getDate()).padStart(2, '0');
             var fechaDevolucionFormatted = `${year}-${month}-${day}`;
-  
+      
             $('#fecha-dev').val(fechaDevolucionFormatted);
           }
+        }
+      
+        // Establecer la fecha inicial y la fecha de devolución al cargar la página
+        setInitialAndReturnDates();
+      
+        // Escuchar cambios en el campo de fecha inicial
+        $('#fecha-ini').off('change').on('change', function () {
+          var fechaInicialVal = $(this).val();
+          calcularFechaDevolucion(fechaInicialVal);
         });
+
   
         $(document).off('click', '.prestar').on('click', '.prestar', function () {
           var fechaInicio = $('#fecha-ini').val();
@@ -340,9 +361,9 @@ $(document).ready(function () {
           autoCenter: true
         });
 
-        // Reset dates
-        $('#fecha-ini').val('');
-        $('#fecha-dev').val('');
+        // Reset data
+        // $('#fecha-ini').val('');
+        // $('#fecha-dev').val('');
         $('.errorDate').text('');
 
       },

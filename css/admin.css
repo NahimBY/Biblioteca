@@ -140,7 +140,7 @@ header {
 
 
 #panel {
-  width: 22%;
+  width: 18%;
   background-color: #f2f2f2;
   border-right: 1px solid #ababab;
   margin-top: 70px;
@@ -163,9 +163,10 @@ header {
   position: absolute;
   background-color: #ffffff;
   transition: 0.2s;
-  width: calc(100% - 24%);
-  height: 100%;
+  width: calc(100% - 20.5%);
+  height: 90.5vh;
   right: 0;
+  bottom: 0;
 }
 
 .contentScroll {
@@ -182,7 +183,7 @@ header {
 
 .vistasTarget {
   position: relative;
-  margin-top: 90px;
+  margin-top: 20px;
   padding-bottom: 80px;
   max-width: calc(100% - 5.5%);
 }
@@ -194,24 +195,6 @@ header {
   border-radius: 5px;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.06);
   width: 100%;
-}
-
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  overflow: hidden;
-}
-
-th,
-td {
-  border: 1px solid #8a8a8a;
-  text-align: center;
-  background-color: #f2f2f2;
-}
-
-th {
-  background-color: #d0d0d0;
 }
 
 /*-----------PANEL DESIGN-----------*/
@@ -234,7 +217,7 @@ th {
   margin-left: 1em;
 }
 
-.menu li>svg {
+.menu li> svg {
   position: relative;
   margin-right: 10px;
   width: 20px;
@@ -251,32 +234,31 @@ th {
 
 /*-----------BUTTON THEME-----------*/
 
-.inspectButton .btn, .btnEditIncidents .btn {
+
+.btn {
   align-items: center;
   justify-content: center;
   width: 23px;
   height: 23px;
   border: none;
   background-color: transparent;
-  position: relative;
   text-align: center;
 }
 
-.btnCompleted .btn {
+
+.btnCompleted button {
   align-items: center;
   justify-content: center;
   width: 25px;
   height: 25px;
   border: none;
   background-color: transparent;
-  position: relative;
   text-align: center;
 }
 
 .btn svg {
   cursor: pointer;
   stroke: #053124;
-  transition: .4s;
 }
 
 .btnCompleted .btn {
@@ -297,19 +279,6 @@ th {
   transition: .2s linear;
 }
 
-.btn:hover>.icon {
-  transform: scale(1.2);
-}
-
-.btn:hover>.icon path {
-  fill: rgb(177, 139, 189);
-}
-
-.btn:hover::after {
-  visibility: visible;
-  opacity: 1;
-  top: 105%;
-}
 
 
 /*-------SEARCH BAR-------*/
@@ -358,44 +327,80 @@ input:hover {
 
 /*------- TABLES ------*/
 
+/* Webkit (Chrome, Safari, Opera) */
+.tabla-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tabla-container::-webkit-scrollbar-track {
+  background-color: #92c2b5; /* Color del fondo del scrollbar */
+  border-radius: 0 5px 5px 0;
+}
+
+.tabla-container::-webkit-scrollbar-thumb {
+  background-color: #468d78; /* Color de la barra del scrollbar */
+  border-radius: 5px;
+}
+
+.tabla-container::-webkit-scrollbar-thumb:hover {
+  background-color: #1e8465; /* Color de la barra del scrollbar cuando se pasa el mouse */
+}
+
+
 table {
   width: 100%;
   border-collapse: collapse;
   border: none;
+  position: relative;
+  text-align: center;
+  border-radius: 5px;
 }
 
 th {
-  position: sticky;
   border: none;
+  justify-content: space-between;
   text-align: center;
   z-index: 10;
   padding: 4px;
-  background-color: #ffffff00;
+  height: 40px;
+  background-color: #ebebeb;
 }
 
+table thead {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  border-bottom: 1px solid rgb(193, 193, 193);
+}
 
 .tabla-container {
+  overflow-x: hidden;
   overflow-y: auto;
-  max-height: 500px;
+  max-height: 420px;
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid #ababab;
 }
 
 table tbody td,
 #tablaLotes tbody td:last-child {
   font-size: 12px;
   border: none;
-  background-color: #ffffff00;
   border-top: 1px solid rgb(193, 193, 193);
   padding: 20px;
+  z-index: 9;
 }
+
 
 table tbody tr:hover {
   background-color: rgb(229, 229, 229);
   cursor: pointer;
 }
 
-table tbody td:last-child {
-  border: none;
+tbody {
+  overflow-y: auto;
 }
+
 
 /**/
 
@@ -1244,7 +1249,32 @@ table tbody td:last-child {
 
 .table-header {
   display: flex;
-  gap: 30px;
+  justify-content: space-between;
+}
+
+.group1 {
+  display: flex;
+  gap: 20px
+}
+
+.group2 {
+  gap: 10px;
+  display: flex; 
+  align-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.entries {
+  width: 60px;
+  height: 40px;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  outline: none;
+  background-color: #f3f3f4;
+  color: #0d0c22;
+  transition: 0.3s ease;
+  text-align: center;
 }
 
 .addBtn {
@@ -1563,3 +1593,106 @@ table tbody td:last-child {
 #actualizarGrafica:hover {
   background-color: rgb(0, 90, 63);
 }
+
+
+
+/**/
+
+ .pagination-controls-style {
+  display: flex;
+  justify-content: end;
+  border-radius: 5px;
+}
+
+.pagination-controls-elements {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  border-radius: 5px;
+  width: auto;
+  border: 1px solid #ababab;
+}
+
+.pagination-button {
+  color: #009367;
+  border: none;
+  height: 39px;
+  width: 90px;
+  cursor: pointer;
+}
+
+.firstButton {
+  border-radius: 5px 0 0 5px;
+  border-right: 1px solid #ababab;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+.lastButton {
+  border-radius: 0 5px 5px 0;
+  border-left: 1px solid #ababab;
+  border-left: none;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+.pagination-button:disabled {
+  cursor: not-allowed;
+  color: #797979;
+}
+
+.page-numbers-style {
+  display: flex;
+  align-items: center;
+}
+
+.page-number, .dots {
+  border: 1px solid #ababab;
+  background-color: #fff;
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+  height: 39px;
+  width: 33px;
+  text-align: center;
+  align-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #009367;;
+}
+
+.page-number.active {
+  background-color: #009367;
+  color: white;
+}
+
+.page-number:hover {
+  background-color: #e9ecef;
+  color: #000000;
+}
+
+
+/**/
+
+.status-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3em 1em;
+  border-radius: 15px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.status-available {
+  background-color: #abeab9; /* Verde para disponible */
+  color: #2fa84a;
+}
+
+.status-unavailable {
+  background-color: #e199a1; /* Rojo para no disponible */
+  color: #a83b3b;
+}
+
+
+/**/

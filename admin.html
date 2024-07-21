@@ -576,21 +576,35 @@
       <br />
       <div id="mainTable" class="target">
         <div class="table-header">
-          <div class="group" id="search">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-              <g>
-                <path
-                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-                </path>
-              </g>
-            </svg>
-            <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+  
+            <div class="addBtn">
+              <button type="button" class="button">
+                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+              </button>
+            </div>
           </div>
-
-          <div class="addBtn">
-            <button type="button" class="button">
-              <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
-            </button>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesActivos">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
           </div>
         </div>
         <br />
@@ -612,6 +626,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers" class="page-numbers-style"></div>
+            <button id="next-page" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -620,21 +642,35 @@
       <br />
       <div id="mainTable" class="target">
         <div class="table-header">
-          <div class="group" id="search">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-              <g>
-                <path
-                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-                </path>
-              </g>
-            </svg>
-            <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+  
+            <div class="addBtn">
+              <button type="button" class="button">
+                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+              </button>
+            </div>
           </div>
-
-          <div class="addBtn">
-            <button type="button" class="button">
-              <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
-            </button>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesBajas">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
           </div>
         </div>
         <br />
@@ -656,6 +692,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-bajas" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-bajas" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-bajas" class="page-numbers-style"></div>
+            <button id="next-page-bajas" class="pagination-button lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -663,15 +707,31 @@
       <h1>Lotes</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar lote(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar lote(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesLotes">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -690,6 +750,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-lotes" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-lotes" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-lotes" class="page-numbers-style"></div>
+            <button id="next-page-lotes" class="pagination-button lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -697,15 +765,31 @@
       <h1>Prestamos</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar prestamo(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar prestamo(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesPrestamos">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -728,6 +812,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-prestamos" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-prestamos" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-prestamos" class="page-numbers-style"></div>
+            <button id="next-page-prestamos" class="pagination-button lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -736,21 +828,35 @@
       <br />
       <div id="mainTable" class="target">
         <div class="table-header">
-          <div class="group" id="search">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-              <g>
-                <path
-                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-                </path>
-              </g>
-            </svg>
-            <input class="input searchInput" type="search" placeholder="Buscar incidente(s)" />
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar incidente(s)" />
+            </div>
+  
+            <div class="incidentBtn">
+              <button type="button" class="button">
+                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+              </button>
+            </div>
           </div>
-
-          <div class="incidentBtn">
-            <button type="button" class="button">
-              <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
-            </button>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesIncidentes">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
           </div>
         </div>
         <br />
@@ -772,10 +878,18 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-incidentes" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-incidentes" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-incidentes" class="page-numbers-style"></div>
+            <button id="next-page-incidentes" class="pagination-button lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="vista6 vistasTarget">
+    <section class="vista6 vistasTarget vistaStadistic">
       <h1>Estadísticas</h1>
       <br />
       <div id="mainTable" class="target targetStadistics">
