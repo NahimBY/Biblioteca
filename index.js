@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { connectToDatabase } = require('./public/js/connection/db');
 const routes = require('./public/js/connection/routes');
 
@@ -7,6 +8,13 @@ const app = express();
 
 // Configuración de CORS
 app.use(cors());
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Servir archivos HTML desde el directorio 'views'
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'views', 'index.html'));
@@ -17,7 +25,6 @@ app.use(express.json({ type: "*/*" }));
 
 connectToDatabase().then(() => {
   app.use('/api', routes);
-
 
   module.exports = app; // Exporta la aplicación para Vercel
 }).catch(err => {
