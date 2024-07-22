@@ -4,9 +4,9 @@ $(document).ready(function () {
   if (token) {
     const decodedToken = jwt_decode(token);
     if (decodedToken && decodedToken.is_admin) {
-      window.location.href = '../../views/admin.html';
+      window.location.href = '/admin';
     } else {
-      window.location.href = '../../views/biblioteca.html';
+      window.location.href = '/biblioteca';
     }
   }
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     // Enviar los datos al servidor
     $.ajax({
-      url: 'https://biblioteca-ecru.vercel.app/api/login',
+      url: 'http://localhost:3000/api/login',
       type: 'POST',
       data: JSON.stringify(loginData),
       contentType: 'application/json',
@@ -45,9 +45,9 @@ $(document).ready(function () {
         localStorage.setItem('token', response.token);
         if (response.success) {
           if (response.is_admin) {
-            window.location.href = '../../views/admin.html';
+            window.location.href = '/admin';
           } else {
-            window.location.href = '../../views/biblioteca.html';
+            window.location.href = '/biblioteca';
           }
         } else {
           var messageError = $(".errorNotification");
@@ -142,7 +142,7 @@ $(document).ready(function () {
 
     // Enviar los datos al servidor
     $.ajax({
-      url: 'https://biblioteca-ecru.vercel.app/api/register',
+      url: 'http://localhost:3000/api/register',
       type: 'POST',
       data: JSON.stringify(registerData),
       contentType: 'application/json',

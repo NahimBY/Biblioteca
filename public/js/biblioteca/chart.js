@@ -19,7 +19,7 @@ $(document).ready(function() {
 
   function actualizarGrafica(month, year) {
       $.ajax({
-          url: 'https://biblioteca-ecru.vercel.app/api/librosMasPrestados',
+          url: 'http://localhost:3000/api/librosMasPrestados',
           method: 'GET',
           data: { month: month, year: year },
           success: function(data) {

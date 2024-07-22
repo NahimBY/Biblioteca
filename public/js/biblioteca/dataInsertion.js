@@ -2,7 +2,7 @@ $(document).ready(function () {
 
   const token = localStorage.getItem('token');
   if (!token) {
-    window.location.href = '../../../views/login.html';
+    window.location.href = '/login';
   }
 
   const username = localStorage.getItem('userNombre');
@@ -79,7 +79,7 @@ $(document).ready(function () {
     publisher = row.find('td:nth-child(5)').text();
   
     $.ajax({
-      url: 'https://biblioteca-ecru.vercel.app/api/book-info',
+      url: 'http://localhost:3000/api/book-info',
       type: 'GET',
       data: { title: title },
       success: function (response) {
@@ -123,7 +123,7 @@ $(document).ready(function () {
         }
   
         $.ajax({
-          url: 'https://biblioteca-ecru.vercel.app/api/mostrarLibrosActivos',
+          url: 'http://localhost:3000/api/mostrarLibrosActivos',
           type: 'GET',
           success: function (activeBooks) {
             var book = activeBooks.find(book => book.Titulo.trim().toLowerCase() === title.toLowerCase());
@@ -213,7 +213,7 @@ $(document).ready(function () {
           var matricula = tokenPayload.matricula;
   
           $.ajax({
-            url: 'https://biblioteca-ecru.vercel.app/api/numPrestamos',
+            url: 'http://localhost:3000/api/numPrestamos',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ matricula: matricula }),
@@ -233,7 +233,7 @@ $(document).ready(function () {
               }
   
               $.ajax({
-                url: 'https://biblioteca-ecru.vercel.app/api/mostrarLibrosActivos',
+                url: 'http://localhost:3000/api/mostrarLibrosActivos',
                 type: 'GET',
                 success: function (activeBooks) {
                   var bookData = activeBooks.find(bookData => bookData.Titulo.trim().toLowerCase() === title.toLowerCase());
@@ -241,7 +241,7 @@ $(document).ready(function () {
                     var idLibro = bookData.id_libro;
                     
                     $.ajax({
-                      url: 'https://biblioteca-ecru.vercel.app/api/prestamo',
+                      url: 'http://localhost:3000/api/prestamo',
                       type: 'POST',
                       contentType: 'application/json',
                       headers: { 'Authorization': 'Bearer ' + token },
@@ -249,7 +249,7 @@ $(document).ready(function () {
                       success: function (response) {
                         
                         $.ajax({
-                          url: 'https://biblioteca-ecru.vercel.app/api/mostrarLibrosActivos',
+                          url: 'http://localhost:3000/api/mostrarLibrosActivos',
                           method: 'GET',
                           success: function (data) {
                             allRecords = data;
@@ -354,7 +354,7 @@ $(document).ready(function () {
 
   function actualizarHistorial() {
     $.ajax({
-      url: 'https://biblioteca-ecru.vercel.app/api/mostrarPrestamos',
+      url: 'http://localhost:3000/api/mostrarPrestamos',
       method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('token') // Incluir el token en la cabecera
@@ -549,7 +549,7 @@ $(document).ready(function () {
 
   // Fetch records and initialize pagination
   $.ajax({
-    url: 'https://biblioteca-ecru.vercel.app/api/mostrarLibrosActivos',
+    url: 'http://localhost:3000/api/mostrarLibrosActivos',
     method: 'GET',
     success: function (data) {
       allRecords = data;
@@ -563,7 +563,7 @@ $(document).ready(function () {
 
   $(document).on('click', '.vistasPanel', function(){
     $.ajax({
-      url: 'https://biblioteca-ecru.vercel.app/api/mostrarLibrosActivos',
+      url: 'http://localhost:3000/api/mostrarLibrosActivos',
       method: 'GET',
       success: function (data) {
         allRecords = data;
