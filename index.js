@@ -25,6 +25,10 @@ app.use(express.json({ type: "*/*" }));
 connectToDatabase().then(() => {
   app.use('/api', routes);
 
+  app.listen(port, () => {
+    console.log(`Está ejecutándose en http://localhost:${port}`);
+  });
+
   module.exports = app; // Exporta la aplicación para Vercel
 }).catch(err => {
   console.error('No se pudo conectar a la base de datos, cerrando la aplicación');
