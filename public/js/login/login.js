@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     // Enviar los datos al servidor
     $.ajax({
-      url: 'http://localhost:3000/api/login',
+      url: 'https://biblioteca-ecru.vercel.app/api/login',
       type: 'POST',
       data: JSON.stringify(loginData),
       contentType: 'application/json',
@@ -142,7 +142,7 @@ $(document).ready(function () {
 
     // Enviar los datos al servidor
     $.ajax({
-      url: 'http://localhost:3000/api/register',
+      url: 'https://biblioteca-ecru.vercel.app/api/register',
       type: 'POST',
       data: JSON.stringify(registerData),
       contentType: 'application/json',

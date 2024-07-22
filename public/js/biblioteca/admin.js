@@ -281,7 +281,7 @@ $(document).ready(function () {
 
     $(document).off('click', '.completar').on('click', '.completar', function(){
       $.ajax({
-          url: 'http://localhost:3000/api/completarPrestamo', // URL del servidor para ejecutar el proceso
+          url: 'https://biblioteca-ecru.vercel.app/api/completarPrestamo', // URL del servidor para ejecutar el proceso
           type: 'POST',
           contentType: 'application/json',
           data: JSON.stringify({ id: id, id_libro: id_libro }), // Envía el ID u otros datos necesarios como JSON
@@ -297,7 +297,7 @@ $(document).ready(function () {
               }, 2000);
 
               $.ajax({
-                url: 'http://localhost:3000/api/mostrarPrestamosAdmin',
+                url: 'https://biblioteca-ecru.vercel.app/api/mostrarPrestamosAdmin',
                 method: 'GET',
                 success: function (data) {
                   allRecordsPrestamos = data;
@@ -353,7 +353,7 @@ $(document).ready(function () {
   
   function obtenerDatosLibro(idLibro) {
     $.ajax({
-      url: 'http://localhost:3000/api/edit-book',
+      url: 'https://biblioteca-ecru.vercel.app/api/edit-book',
       method: 'GET',
       data: { id: idLibro },
       success: function (data) {
@@ -406,7 +406,7 @@ $(document).ready(function () {
         };
     
         $.ajax({
-          url: 'http://localhost:3000/api/actualizarLibro',
+          url: 'https://biblioteca-ecru.vercel.app/api/actualizarLibro',
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(datosActualizados),
@@ -424,7 +424,7 @@ $(document).ready(function () {
             }, 2000);
             
             $.ajax({
-              url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+              url: 'https://biblioteca-ecru.vercel.app/api/mostrarTodosLosLibros',
               method: 'GET',
               success: function (data) {
                 allRecords = data;
@@ -509,7 +509,7 @@ $(document).ready(function () {
         };
   
         $.ajax({
-          url: 'http://localhost:3000/api/agregarLibro',
+          url: 'https://biblioteca-ecru.vercel.app/api/agregarLibro',
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(addBook),
@@ -528,7 +528,7 @@ $(document).ready(function () {
             limpiarFormularioAdd();
   
             $.ajax({
-              url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+              url: 'https://biblioteca-ecru.vercel.app/api/mostrarTodosLosLibros',
               method: 'GET',
               success: function (data) {
                 generosLibros(data);
@@ -623,7 +623,7 @@ $(document).ready(function () {
         };
   
         $.ajax({
-          url: 'http://localhost:3000/api/agregarIncidente',
+          url: 'https://biblioteca-ecru.vercel.app/api/agregarIncidente',
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(incidentBook),
@@ -642,7 +642,7 @@ $(document).ready(function () {
             limpiarFormularioIncident();
   
             $.ajax({
-              url: 'http://localhost:3000/api/mostrarIncidentes',
+              url: 'https://biblioteca-ecru.vercel.app/api/mostrarIncidentes',
               method: 'GET',
               success: function (data) {
                 allRecordsIncidentes = data;
@@ -703,7 +703,7 @@ $(document).ready(function () {
 
   function obtenerDatosIncidente(id) {
     $.ajax({
-      url: 'http://localhost:3000/api/edit-incident',
+      url: 'https://biblioteca-ecru.vercel.app/api/edit-incident',
       method: 'GET',
       data: { id: id },
       success: function (data) {
@@ -750,7 +750,7 @@ $(document).ready(function () {
         };
     
         $.ajax({
-          url: 'http://localhost:3000/api/actualizarIncidente',
+          url: 'https://biblioteca-ecru.vercel.app/api/actualizarIncidente',
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(datosActualizados),
@@ -768,7 +768,7 @@ $(document).ready(function () {
             }, 2000);
             
             $.ajax({
-              url: 'http://localhost:3000/api/mostrarIncidentes',
+              url: 'https://biblioteca-ecru.vercel.app/api/mostrarIncidentes',
               method: 'GET',
               success: function (data) {
                 allRecordsIncidentes = data;
@@ -808,7 +808,7 @@ $(document).ready(function () {
     suggestionBox.addClass('showSuggestions');
 
     if (term.length >= 2) {
-      $.get('http://localhost:3000/api/buscarMatricula', { term: term }, function(data) {
+      $.get('https://biblioteca-ecru.vercel.app/api/buscarMatricula', { term: term }, function(data) {
         const suggestions = data.map(item => item.matricula);
         mostrarSugerencias('#incident-matricula', suggestions);
       });
@@ -831,7 +831,7 @@ $(document).ready(function () {
     suggestionBox.addClass('showSuggestions');
 
     if (term.length >= 2) {
-      $.get('http://localhost:3000/api/buscarLibro', { term: term }, function(data) {
+      $.get('https://biblioteca-ecru.vercel.app/api/buscarLibro', { term: term }, function(data) {
         const suggestions = data.map(item => item.Titulo);
         mostrarSugerencias('#incident-titulo', suggestions);
       });
@@ -845,7 +845,7 @@ $(document).ready(function () {
     const titulo = $(this).val();
 
     if (titulo.length > 0) {
-      $.get('http://localhost:3000/api/obtenerIdLibro', { titulo: titulo }, function(data) {
+      $.get('https://biblioteca-ecru.vercel.app/api/obtenerIdLibro', { titulo: titulo }, function(data) {
         if (data.length > 0) {
           $('#incident-id_libro').val(data[0].id_libro).prop('disabled', true);
         } else {
@@ -899,7 +899,7 @@ $(document).ready(function () {
     suggestionBox.addClass('showSuggestions');
 
     if (term.length >= 2) {
-      $.get('http://localhost:3000/api/buscarMatricula', { term: term }, function(data) {
+      $.get('https://biblioteca-ecru.vercel.app/api/buscarMatricula', { term: term }, function(data) {
         const suggestions = data.map(item => item.matricula);
         mostrarSugerenciasEdit('#edit-incident-matricula', suggestions);
       });
@@ -922,7 +922,7 @@ $(document).ready(function () {
     suggestionBox.addClass('showSuggestions');
 
     if (term.length >= 2) {
-      $.get('http://localhost:3000/api/buscarLibro', { term: term }, function(data) {
+      $.get('https://biblioteca-ecru.vercel.app/api/buscarLibro', { term: term }, function(data) {
         const suggestions = data.map(item => item.Titulo);
         mostrarSugerenciasEdit('#edit-incident-titulo', suggestions);
       });
@@ -936,7 +936,7 @@ $(document).ready(function () {
     const titulo = $(this).val();
 
     if (titulo.length > 0) {
-      $.get('http://localhost:3000/api/obtenerIdLibro', { titulo: titulo }, function(data) {
+      $.get('https://biblioteca-ecru.vercel.app/api/obtenerIdLibro', { titulo: titulo }, function(data) {
         if (data.length > 0) {
           $('#edit-incident-id_libro').val(data[0].id_libro).prop('disabled', true);
         } else {
@@ -1342,7 +1342,7 @@ $(document).ready(function () {
   // Fetch records and initialize pagination for Lotes, Prestamos, Incidentes
 
   $.ajax({
-    url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+    url: 'https://biblioteca-ecru.vercel.app/api/mostrarTodosLosLibros',
     method: 'GET',
     success: function (data) {
       allRecords = data;
@@ -1354,7 +1354,7 @@ $(document).ready(function () {
   });
 
   $.ajax({
-      url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+      url: 'https://biblioteca-ecru.vercel.app/api/mostrarTodosLosLibros',
       method: 'GET',
       success: function(data) {
           allRecordsLotes = data;
@@ -1366,7 +1366,7 @@ $(document).ready(function () {
   });
 
   $.ajax({
-      url: 'http://localhost:3000/api/mostrarPrestamosAdmin',
+      url: 'https://biblioteca-ecru.vercel.app/api/mostrarPrestamosAdmin',
       method: 'GET',
       success: function(data) {
           allRecordsPrestamos = data;
@@ -1378,7 +1378,7 @@ $(document).ready(function () {
   });
 
   $.ajax({
-      url: 'http://localhost:3000/api/mostrarIncidentes',
+      url: 'https://biblioteca-ecru.vercel.app/api/mostrarIncidentes',
       method: 'GET',
       success: function(data) {
           allRecordsIncidentes = data;
@@ -1393,7 +1393,7 @@ $(document).ready(function () {
 
   $(document).on('click', '.vistasPanel', function(){
     $.ajax({
-      url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+      url: 'https://biblioteca-ecru.vercel.app/api/mostrarTodosLosLibros',
       method: 'GET',
       success: function (data) {
         allRecords = data;
@@ -1406,7 +1406,7 @@ $(document).ready(function () {
     });
 
     $.ajax({
-      url: 'http://localhost:3000/api/mostrarTodosLosLibros',
+      url: 'https://biblioteca-ecru.vercel.app/api/mostrarTodosLosLibros',
       method: 'GET',
       success: function(data) {
           allRecordsLotes = data;
@@ -1418,7 +1418,7 @@ $(document).ready(function () {
     });
 
     $.ajax({
-      url: 'http://localhost:3000/api/mostrarPrestamosAdmin',
+      url: 'https://biblioteca-ecru.vercel.app/api/mostrarPrestamosAdmin',
       method: 'GET',
       success: function (data) {
         allRecordsPrestamos = data;
@@ -1430,7 +1430,7 @@ $(document).ready(function () {
     });
 
     $.ajax({
-      url: 'http://localhost:3000/api/mostrarIncidentes',
+      url: 'https://biblioteca-ecru.vercel.app/api/mostrarIncidentes',
       method: 'GET',
       success: function(data) {
           allRecordsIncidentes = data;

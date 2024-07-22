@@ -5,15 +5,9 @@ const { connectToDatabase } = require('./public/js/connection/db');
 const routes = require('./public/js/connection/routes');
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 // Configuración de CORS
-app.use(cors({
-  origin: 'https://biblioteca-ecru.vercel.app/', // Cambia esto al dominio correcto
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+app.use(cors({ origin: "*" }));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
@@ -25,9 +19,6 @@ app.use(express.json({ type: "*/*" }));
 connectToDatabase().then(() => {
   app.use('/api', routes);
 
-  app.listen(port, () => {
-    console.log(`Está ejecutándose en http://localhost:${port}`);
-  });
 
   module.exports = app; // Exporta la aplicación para Vercel
 }).catch(err => {
