@@ -357,20 +357,19 @@ table {
 }
 
 th {
-  border: none;
   justify-content: space-between;
   text-align: center;
   z-index: 10;
   padding: 4px;
   height: 40px;
-  background-color: #ebebeb;
+  background-color: #e0e0e0;
 }
 
 table thead {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  border-bottom: 1px solid rgb(193, 193, 193);
+  /* border-bottom: 1px solid rgb(255, 0, 0); */
 }
 
 .tabla-container {
@@ -386,7 +385,7 @@ table tbody td,
 #tablaLotes tbody td:last-child {
   font-size: 12px;
   border: none;
-  border-top: 1px solid rgb(193, 193, 193);
+  border-top: 1px solid #c1c1c1;
   padding: 20px;
   z-index: 9;
 }
@@ -1598,7 +1597,7 @@ tbody {
 
 /**/
 
- .pagination-controls-style {
+.pagination-controls-style {
   display: flex;
   justify-content: end;
   border-radius: 5px;

@@ -341,18 +341,9 @@
   
   <section id="content">
     <section class="history vistasTarget">
-      <h1>Prestamos</h1>
-      <br />
       <div id="mainTable" class="target">
         <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+          <h1>Prestamos</h1>
         </div>
         <br />
         <div class="tabla-container">
@@ -376,38 +367,33 @@
       <h1>Científica</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group" id="search">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
-        </div>
-        <br />
-        <!-- TABLET/PHONE VIEW --->
-        <div class="cards-position">
-          <div class="card-phoneView">
-            <div class="image"></div>
-              <div class="content-card">
-                <a href="#">
-                  <span class="title">
-                    El origen de las especies
-                  </span>
-                </a>
-
-                <a class="action" href="#">
-                  Find out more
-                  <span aria-hidden="true">
-                    →
-                  </span>
-                </a>
-              </div>
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesCientifica">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
           </div>
         </div>
-        <!-- LAPTOP VIEW --->
+        <br>
         <div class="tabla-container">
           <table id="tablaCientifica">
             <thead>
@@ -425,6 +411,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-cientifica" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-cientifica" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-cientifica" class="page-numbers-style"></div>
+            <button id="next-page-cientifica" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -432,15 +426,31 @@
       <h1>Literatura</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesLiteratura">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -460,6 +470,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-literatura" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-literatura" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-literatura" class="page-numbers-style"></div>
+            <button id="next-page-literatura" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -467,15 +485,31 @@
       <h1>Biografías</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesBiografias">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -495,6 +529,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-biografias" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-biografias" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-biografias" class="page-numbers-style"></div>
+            <button id="next-page-biografias" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -502,15 +544,31 @@
       <h1>Historia</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesHistoria">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -530,6 +588,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-historia" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-historia" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-historia" class="page-numbers-style"></div>
+            <button id="next-page-historia" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -537,15 +603,31 @@
       <h1>Psicología</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesPsicologia">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -565,6 +647,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-psicologia" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-psicologia" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-psicologia" class="page-numbers-style"></div>
+            <button id="next-page-psicologia" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -572,15 +662,31 @@
       <h1>Negocios</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesNegocios">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -600,6 +706,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-negocios" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-negocios" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-negocios" class="page-numbers-style"></div>
+            <button id="next-page-negocios" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -607,15 +721,31 @@
       <h1>Tecnología</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesTecnologia">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -635,6 +765,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-tecnologia" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-tecnologia" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-tecnologia" class="page-numbers-style"></div>
+            <button id="next-page-tecnologia" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -642,15 +780,31 @@
       <h1>Sociales</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesSociales">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -670,6 +824,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-sociales" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-sociales" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-sociales" class="page-numbers-style"></div>
+            <button id="next-page-sociales" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -677,15 +839,31 @@
       <h1>Arte</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesArte">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -705,6 +883,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-arte" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-arte" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-arte" class="page-numbers-style"></div>
+            <button id="next-page-arte" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -712,15 +898,31 @@
       <h1>Salud</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesSalud">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -740,6 +942,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-salud" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-salud" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-salud" class="page-numbers-style"></div>
+            <button id="next-page-salud" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -747,15 +957,31 @@
       <h1>Derecho</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesDerecho">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -775,6 +1001,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-derecho" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-derecho" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-derecho" class="page-numbers-style"></div>
+            <button id="next-page-derecho" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -782,15 +1016,31 @@
       <h1>Idiomas</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesIdiomas">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -810,6 +1060,14 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <div id="pagination-controls-idiomas" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-idiomas" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-idiomas" class="page-numbers-style"></div>
+            <button id="next-page-idiomas" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -817,15 +1075,31 @@
       <h1>Filosofía</h1>
       <br />
       <div id="mainTable" class="target">
-        <div class="group">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <g>
-              <path
-                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-              </path>
-            </g>
-          </svg>
-          <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+        <div class="table-header">
+          <div class="group1">
+            <div class="group" id="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                  </path>
+                </g>
+              </svg>
+              <input class="input searchInput" type="search" placeholder="Buscar libro(s)" />
+            </div>
+          </div>
+          <div class="group2">
+            <p>Mostrar</p>
+            <select name="entries"  class="entries entriesFilosofia">
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <p>entradas</p>
+          </div>
         </div>
         <br />
         <div class="tabla-container">
@@ -844,6 +1118,14 @@
               <tr></tr>
             </tbody>
           </table>
+        </div>
+        <br>
+        <div id="pagination-controls-filosofia" class="pagination-controls-style">
+          <div class="pagination-controls-elements">
+            <button id="prev-page-filosofia" class="pagination-button firstButton" disabled>Anterior</button>
+            <div id="page-numbers-filosofia" class="page-numbers-style"></div>
+            <button id="next-page-filosofia" class="pagination-button next-page-style lastButton">Siguiente</button>
+          </div>
         </div>
       </div>
     </section>

@@ -8,15 +8,11 @@ $(document).ready(function () {
   const username = localStorage.getItem('userNombre');
   $('.username').text(username);
 
-  function insertarRegistrosPorGenero(tablaId, genero, registros) {
+  function insertarRegistrosPorGenero(tablaId, registros) {
     var tbody = $(`#${tablaId} tbody`);
     tbody.empty();
 
-    var registrosFiltrados = registros.filter(function (registro) {
-      return registro.Genero === genero;
-    });
-
-    registrosFiltrados.forEach(function (registro) {
+    registros.forEach(function (registro) {
       var fila = $('<tr>');
 
       fila.append($('<td class="inspectButton" title="Click aquí para inspeccionar">').text(registro.Titulo));
@@ -35,50 +31,35 @@ $(document).ready(function () {
 
   }
 
-  function generosLibros(registros) {
-    insertarRegistrosPorGenero('tablaCientifica', 'Científica', registros);
-    insertarRegistrosPorGenero('tablaLiteratura', 'Literatura', registros);
-    insertarRegistrosPorGenero('tablaBiografias', 'Biografías', registros);
-    insertarRegistrosPorGenero('tablaHistoria', 'Historia', registros);
-    insertarRegistrosPorGenero('tablaPsicologia', 'Psicologia', registros);
-    insertarRegistrosPorGenero('tablaNegocios', 'Negocios', registros);
-    insertarRegistrosPorGenero('tablaTecnologia', 'Tecnologia', registros);
-    insertarRegistrosPorGenero('tablaSociales', 'Sociales', registros);
-    insertarRegistrosPorGenero('tablaArte', 'Arte', registros);
-    insertarRegistrosPorGenero('tablaSalud', 'Salud', registros);
-    insertarRegistrosPorGenero('tablaDerecho', 'Derecho', registros);
-    insertarRegistrosPorGenero('tablaIdiomas', 'Idiomas', registros);
-    insertarRegistrosPorGenero('tablaFilosofia', 'Filosofía', registros);
-  }
 
 
   ///////////////////////////////////////////////////////////////////////////////////
 
-  $.ajax({
-    url: 'http://localhost:3000/api/mostrarLibrosActivos',
-    method: 'GET',
-    success: function (data) {
-      // console.log(data);
-      generosLibros(data);
-    },
-    error: function (error) {
-      console.error('Error al obtener los libros activos:', error);
-    }
-  });
+  // $.ajax({
+  //   url: 'http://localhost:3000/api/mostrarLibrosCientifica',
+  //   method: 'GET',
+  //   success: function (data) {
+  //     // console.log(data);
+  //     generosLibros(data);
+  //   },
+  //   error: function (error) {
+  //     console.error('Error al obtener los libros Cientifica:', error);
+  //   }
+  // });
 
-  $(document).on('click', '.vistasPanel', function(){
-    $.ajax({
-      url: 'http://localhost:3000/api/mostrarLibrosActivos',
-      method: 'GET',
-      success: function (data) {
-        // console.log(data);
-        generosLibros(data);
-      },
-      error: function (error) {
-        console.error('Error al obtener los libros activos:', error);
-      }
-    });
-  });
+  // $(document).on('click', '.vistasPanel', function(){
+  //   $.ajax({
+  //     url: 'http://localhost:3000/api/mostrarLibrosCientifica',
+  //     method: 'GET',
+  //     success: function (data) {
+  //       // console.log(data);
+  //       generosLibros(data);
+  //     },
+  //     error: function (error) {
+  //       console.error('Error al obtener los libros Cientifica:', error);
+  //     }
+  //   });
+  // });
 
   ////////////////////////////////////////////////////////////////////////////////
 
@@ -186,41 +167,32 @@ $(document).ready(function () {
             }
           },
           error: function (error) {
-            console.error('Error al obtener libros activos:', error);
+            console.error('Error al obtener libros Cientifica:', error);
           }
         });
   
 
         function setInitialAndReturnDates() {
           var hoy = new Date();
-          var year = hoy.getFullYear();
-          var month = String(hoy.getMonth() + 1).padStart(2, '0');
-          var day = String(hoy.getDate()).padStart(2, '0');
+          var hoyUTC6 = new Date(hoy.toLocaleString('en-US', { timeZone: 'America/Mexico_City' }));
+          var year = hoyUTC6.getFullYear();
+          var month = String(hoyUTC6.getMonth() + 1).padStart(2, '0');
+          var day = String(hoyUTC6.getDate()).padStart(2, '0');
           var fechaHoyFormatted = `${year}-${month}-${day}`;
-      
+        
           $('#fecha-ini').val(fechaHoyFormatted);
           calcularFechaDevolucion(fechaHoyFormatted);
         }
-      
+        
         // Función para calcular y establecer la fecha de devolución
         function calcularFechaDevolucion(fechaInicialVal) {
           var fechaInicial = new Date(fechaInicialVal);
           var hoy = new Date();
-      
-          if (fechaInicialVal === '' || isNaN(Date.parse(fechaInicialVal))) {
-            $('.prestar').attr('disabled', true);
-            $('.prestar').css({
-              'pointer-events': 'none',
-              'opacity': '0.5'
-            });
-            $('.errorDate').text('Favor de ingresar una fecha.');
-            $('#fecha-dev').val('');
-            return;
-          }
-      
-          var fechaInicialString = Date.parse(fechaInicial.toISOString().split('T')[0]);
-          var hoyString = Date.parse(hoy.toISOString().split('T')[0]);
-      
+          var hoyUTC6 = new Date(hoy.toLocaleString('en-US', { timeZone: 'America/Mexico_City' }));
+        
+          var fechaInicialString = Date.parse(hoyUTC6.toISOString().split('T')[0]);
+          var hoyString = Date.parse(hoyUTC6.toISOString().split('T')[0]);
+        
           if (fechaInicialString < hoyString) {
             $('.prestar').attr('disabled', true);
             $('.prestar').css({
@@ -236,22 +208,22 @@ $(document).ready(function () {
               'opacity': '1'
             });
             $('.errorDate').text(''); // Clear error message if date is valid
-      
+        
             var fechaDevolucion = new Date(fechaInicial);
             fechaDevolucion.setDate(fechaDevolucion.getDate() + 5);
-      
+        
             var year = fechaDevolucion.getFullYear();
             var month = String(fechaDevolucion.getMonth() + 1).padStart(2, '0');
             var day = String(fechaDevolucion.getDate()).padStart(2, '0');
             var fechaDevolucionFormatted = `${year}-${month}-${day}`;
-      
+        
             $('#fecha-dev').val(fechaDevolucionFormatted);
           }
         }
-      
+        
         // Establecer la fecha inicial y la fecha de devolución al cargar la página
         setInitialAndReturnDates();
-      
+        
         // Escuchar cambios en el campo de fecha inicial
         $('#fecha-ini').off('change').on('change', function () {
           var fechaInicialVal = $(this).val();
@@ -262,6 +234,7 @@ $(document).ready(function () {
         $(document).off('click', '.prestar').on('click', '.prestar', function () {
           var fechaInicio = $('#fecha-ini').val();
           var fechaDevolucion = $('#fecha-dev').val();
+          
   
           var token = localStorage.getItem('token');
           var tokenPayload = JSON.parse(atob(token.split('.')[1]));
@@ -307,11 +280,12 @@ $(document).ready(function () {
                           url: 'http://localhost:3000/api/mostrarLibrosActivos',
                           method: 'GET',
                           success: function (data) {
-                            // console.log(data);
-                            generosLibros(data);
+                            allRecords = data;
+                            loadTableRecords(allRecords);
+                            paginateRecords(allRecords);
                           },
                           error: function (error) {
-                            console.error('Error al obtener los libros activos:', error);
+                            console.error('Error al obtener los libros Cientifica:', error);
                           }
                         });
                         
@@ -344,7 +318,7 @@ $(document).ready(function () {
                   }
                 },
                 error: function (error) {
-                  console.error('Error al obtener libros activos:', error);
+                  console.error('Error al obtener libros Cientifica:', error);
                 }
               });
             },
@@ -378,11 +352,15 @@ $(document).ready(function () {
 
   /////////////////////////////////////////////////////////////////////////////
 
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
+  function formatDateToUTC6(dateString) {
+    // Crear un objeto Date a partir de la cadena de fecha
+    var date = new Date(dateString);
+    
+    // Obtener la fecha en UTC y ajustar al formato "dd-mm-yyyy"
+    var day = String(date.getUTCDate()).padStart(2, '0');
+    var month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Meses empiezan en 0
+    var year = date.getUTCFullYear();
+    
     return `${day}-${month}-${year}`;
   }
 
@@ -394,8 +372,8 @@ $(document).ready(function () {
       var fila = $('<tr>');
 
       fila.append($('<td>').text(registro.titulo));
-      fila.append($('<td>').text(formatDate(registro.fecha_inicio)));
-      fila.append($('<td>').text(formatDate(registro.fecha_devolucion)));
+      fila.append($('<td>').text(formatDateToUTC6(registro.fecha_inicio)));
+      fila.append($('<td>').text(formatDateToUTC6(registro.fecha_devolucion)));
 
       tbody.append(fila);
     });
@@ -464,6 +442,213 @@ $(document).ready(function () {
 
   });
 
+  
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
 
+
+  
+  const generos = ['Científica', 'Literatura', 'Biografías', 'Historia', 'Psicología', 'Negocios', 'Tecnología', 'Sociales', 'Arte', 'Salud', 'Derecho', 'Idiomas', 'Filosofía'];
+  const generosTables = ['Cientifica', 'Literatura', 'Biografias', 'Historia', 'Psicologia', 'Negocios', 'Tecnologia', 'Sociales', 'Arte', 'Salud', 'Derecho', 'Idiomas', 'Filosofia'];
+  const generosPages = ['cientifica', 'literatura', 'biografias', 'historia', 'psicologia', 'negocios', 'tecnologia', 'sociales', 'arte', 'salud', 'derecho', 'idiomas', 'filosofia'];
+
+  var currentPage = {};
+  var recordsPerPage = {};
+  var allRecords = [];
+
+  generos.forEach((genero, index) => {
+    currentPage[generosPages[index]] = 1;
+    recordsPerPage[generosPages[index]] = 5;
+  });
+
+  // Cambiar el número de registros por página
+  generos.forEach((genero, index) => {
+    $(`.entries${generosTables[index]}`).change(function() {
+      recordsPerPage[generosPages[index]] = parseInt($(this).val());
+      currentPage[generosPages[index]] = 1;
+      paginateRecords(allRecords);
+    });
+  });
+
+  // Función para paginar registros
+  function paginateRecords(records) {
+    generos.forEach((genero, index) => {
+      var start = (currentPage[generosPages[index]] - 1) * recordsPerPage[generosPages[index]];
+      var end = start + recordsPerPage[generosPages[index]];
+      var filteredRecords = records.filter(r => r.Genero === genero).slice(start, end);
+      insertarRegistrosPorGenero(`tabla${generosTables[index]}`, filteredRecords);
+    });
+
+    updatePaginationControls(records);
+  }
+
+  // Función para actualizar controles de paginación
+  function updatePaginationControls(records) {
+    generos.forEach((genero, index) => {
+      var totalPages = Math.ceil(records.filter(r => r.Genero === genero).length / recordsPerPage[generosPages[index]]);
+      updatePageNumbers(generosPages[index], totalPages);
+      $(`#prev-page-${generosPages[index]}`).attr('disabled', currentPage[generosPages[index]] === 1);
+      $(`#next-page-${generosPages[index]}`).attr('disabled', currentPage[generosPages[index]] === totalPages);
+    });
+  }
+
+  // Función para actualizar los números de página
+  const MAX_VISIBLE_PAGES = 5;
+
+  function updatePageNumbers(generoPage, totalPages) {
+    var container = $(`#page-numbers-${generoPage}`);
+    container.empty();
+
+    if (totalPages <= MAX_VISIBLE_PAGES) {
+      for (var i = 1; i <= totalPages; i++) {
+        var pageNumber = $('<span>').text(i).addClass('page-number');
+        if (i === currentPage[generoPage]) {
+          pageNumber.addClass('active');
+        }
+        pageNumber.click((function(page) {
+          return function() {
+            currentPage[generoPage] = page;
+            paginateRecords(allRecords);
+          };
+        })(i));
+        container.append(pageNumber);
+      }
+    } else {
+      var startPage, endPage;
+
+      if (currentPage[generoPage] <= Math.ceil(MAX_VISIBLE_PAGES / 2)) {
+        startPage = 1;
+        endPage = MAX_VISIBLE_PAGES;
+      } else if (currentPage[generoPage] + Math.floor(MAX_VISIBLE_PAGES / 2) >= totalPages) {
+        startPage = totalPages - MAX_VISIBLE_PAGES + 1;
+        endPage = totalPages;
+      } else {
+        startPage = currentPage[generoPage] - Math.floor(MAX_VISIBLE_PAGES / 2);
+        endPage = currentPage[generoPage] + Math.floor(MAX_VISIBLE_PAGES / 2);
+      }
+
+      for (var i = startPage; i <= endPage; i++) {
+        var pageNumber = $('<span>').text(i).addClass('page-number');
+        if (i === currentPage[generoPage]) {
+          pageNumber.addClass('active');
+        }
+        pageNumber.click((function(page) {
+          return function() {
+            currentPage[generoPage] = page;
+            paginateRecords(allRecords);
+          };
+        })(i));
+        container.append(pageNumber);
+      }
+
+      if (startPage > 1) {
+        container.prepend($('<span>').text('...').addClass('dots'));
+      }
+
+      if (endPage < totalPages) {
+        container.append($('<span>').text('...').addClass('dots'));
+      }
+    }
+  }
+
+  // Inicializar los eventos de paginación
+  generos.forEach((genero, index) => {
+    $(`#prev-page-${generosPages[index]}`).click(function() {
+      if (currentPage[generosPages[index]] > 1) {
+        currentPage[generosPages[index]]--;
+        paginateRecords(allRecords);
+      }
+    });
+
+    $(`#next-page-${generosPages[index]}`).click(function() {
+      var totalPages = Math.ceil(allRecords.filter(r => r.Genero === genero).length / recordsPerPage[generosPages[index]]);
+      if (currentPage[generosPages[index]] < totalPages) {
+        currentPage[generosPages[index]]++;
+        paginateRecords(allRecords);
+      }
+    });
+  });
+
+  // Fetch records and initialize pagination
+  $.ajax({
+    url: 'http://localhost:3000/api/mostrarLibrosActivos',
+    method: 'GET',
+    success: function (data) {
+      allRecords = data;
+      loadTableRecords(allRecords);
+      paginateRecords(allRecords);
+    },
+    error: function (error) {
+      console.error('Error al obtener los libros:', error);
+    }
+  });
+
+  $(document).on('click', '.vistasPanel', function(){
+    $.ajax({
+      url: 'http://localhost:3000/api/mostrarLibrosActivos',
+      method: 'GET',
+      success: function (data) {
+        allRecords = data;
+        loadTableRecords(allRecords);
+        paginateRecords(allRecords);
+      },
+      error: function (error) {
+        console.error('Error al obtener los libros:', error);
+      }
+    });
+  });
+
+  // Manejo de eventos para la búsqueda
+  $('.searchInput').on('input', function () {
+    var searchValue = $(this).val().toLowerCase();
+
+    if (searchValue.trim() === '') {
+      // Si la búsqueda está vacía, mostrar todos los registros y resetear la paginación
+      loadTableRecords(allRecords);
+      paginateRecords(allRecords);
+    } else {
+      // Filtrar todos los registros basados en la búsqueda
+      var filteredRecords = allRecords.filter(function (record) {
+        return Object.values(record).some(function (value) {
+          return String(value).toLowerCase().includes(searchValue);
+        });
+      });
+
+      // Cargar los registros filtrados en la tabla
+      loadTableRecords(filteredRecords);
+      paginateRecords(filteredRecords); // Actualiza la paginación con los registros filtrados
+    }
+  });
+
+  function loadTableRecords(records) {
+    var tbody = $('table tbody');
+    tbody.empty(); // Limpiar tabla actual
+
+    if (!records || records.length === 0) {
+      // Manejo para cuando no hay registros
+      tbody.append('<tr><td colspan="5">No se encontraron registros</td></tr>'); // Ajusta el colspan según la cantidad de columnas
+      return;
+    }
+
+    records.forEach(function (record) {
+      var row = $('<tr>');
+      row.append($('<td>').text(record.titulo));
+      row.append($('<td>').text(record.autor));
+      row.append($('<td>').text(record.año));
+      row.append($('<td>').text(record.paginas));
+      row.append($('<td>').text(record.editorial));
+      // Añadir más columnas según sea necesario
+      tbody.append(row);
+    });
+  }
+
+  
+  
+  
 });

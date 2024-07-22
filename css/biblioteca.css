@@ -212,22 +212,6 @@ header {
   width: 100%;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  overflow: hidden;
-}
-
-th,
-td {
-  border: 1px solid #8a8a8a;
-  text-align: center;
-  background-color: #f2f2f2;
-}
-
-th {
-  background-color: #d0d0d0;
-}
 
 /*-----------PANEL DESIGN-----------*/
 
@@ -323,7 +307,7 @@ th {
 }
 
 .input {
-  width: 100%;
+  width: 300px;
   height: 40px;
   line-height: 28px;
   padding: 1rem 1rem;
@@ -356,43 +340,80 @@ input:hover {
   height: 1rem;
 }
 
+
 /*------- TABLES ------*/
+
+/* Webkit (Chrome, Safari, Opera) */
+.tabla-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tabla-container::-webkit-scrollbar-track {
+  background-color: #92c2b5; /* Color del fondo del scrollbar */
+  border-radius: 0 5px 5px 0;
+}
+
+.tabla-container::-webkit-scrollbar-thumb {
+  background-color: #468d78; /* Color de la barra del scrollbar */
+  border-radius: 5px;
+}
+
+.tabla-container::-webkit-scrollbar-thumb:hover {
+  background-color: #1e8465; /* Color de la barra del scrollbar cuando se pasa el mouse */
+}
+
 
 table {
   width: 100%;
   border-collapse: collapse;
-  overflow: hidden;
   border: none;
+  position: relative;
+  text-align: center;
+  border-radius: 5px;
 }
 
 th {
-  position: sticky;
   border: none;
+  justify-content: space-between;
   text-align: center;
+  z-index: 10;
   padding: 4px;
-  background-color: #ffffff00;
+  height: 40px;
+  background-color: #ebebeb;
+}
+
+table thead {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
 }
 
 .tabla-container {
-  max-height: 500px;
+  overflow-x: hidden;
   overflow-y: auto;
+  max-height: 420px;
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid #ababab;
 }
 
-table tbody td {
+table tbody td,
+#tablaLotes tbody td:last-child {
   font-size: 12px;
   border: none;
-  background-color: #ffffff00;
   border-top: 1px solid rgb(193, 193, 193);
   padding: 20px;
+  z-index: 9;
 }
+
 
 table tbody tr:hover {
   background-color: rgb(229, 229, 229);
   cursor: pointer;
 }
 
-table tbody td:last-child {
-  border: none;
+tbody {
+  overflow-y: auto;
 }
 
 #tablaHistorial tbody td {
@@ -823,4 +844,116 @@ table tbody td:last-child {
   display: flex;
   gap: 12px;
   left: 15px;
+}
+
+
+
+
+/**/
+
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.group1 {
+  display: flex;
+  gap: 20px
+}
+
+.group2 {
+  gap: 10px;
+  display: flex; 
+  align-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.entries {
+  width: 60px;
+  height: 40px;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  outline: none;
+  background-color: #f3f3f4;
+  color: #0d0c22;
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+
+/**/
+
+.pagination-controls-style {
+  display: flex;
+  justify-content: end;
+  border-radius: 5px;
+}
+
+.pagination-controls-elements {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  border-radius: 5px;
+  width: auto;
+  border: 1px solid #ababab;
+}
+
+.pagination-button {
+  color: #009367;
+  border: none;
+  height: 39px;
+  width: 90px;
+  cursor: pointer;
+}
+
+.firstButton {
+  border-radius: 5px 0 0 5px;
+  border-right: 1px solid #ababab;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+.lastButton {
+  border-radius: 0 5px 5px 0;
+  border-left: 1px solid #ababab;
+  border-left: none;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+.pagination-button:disabled {
+  cursor: not-allowed;
+  color: #797979;
+}
+
+.page-numbers-style {
+  display: flex;
+  align-items: center;
+}
+
+.page-number, .dots {
+  border: 1px solid #ababab;
+  background-color: #fff;
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+  height: 39px;
+  width: 33px;
+  text-align: center;
+  align-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #009367;;
+}
+
+.page-number.active {
+  background-color: #009367;
+  color: white;
+}
+
+.page-number:hover {
+  background-color: #e9ecef;
+  color: #000000;
 }
