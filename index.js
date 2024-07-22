@@ -1,17 +1,16 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const { connectToDatabase } = require('./public/js/connection/db');
 const routes = require('./public/js/connection/routes');
 
 const app = express();
 
 // Configuración de CORS
-app.use(cors({ origin: "*" }));
+app.use(cors());
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'views', 'index.html'));
+// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ type: "*/*" }));

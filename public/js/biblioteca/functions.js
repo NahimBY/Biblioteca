@@ -7,7 +7,7 @@ $(document).ready(function () {
 
   $('#logout').click(function () {
     localStorage.clear();
-    window.location.href = '../../views/index.html';
+    window.location.href = '../../../views/index.html';
   });
 
 
