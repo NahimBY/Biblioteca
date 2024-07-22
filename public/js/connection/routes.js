@@ -101,16 +101,7 @@ router.post('/login', async (req, res) => {
       const storedPassword = user.password;
       const storedEmail = user.email;
 
-      console.log('storedPassword: ', storedPassword);
-      console.log('password: ', encryptedPassword);
-
-      console.log('storedEmail: ', storedEmail);
-      console.log('email: ', email);
-
       if (storedPassword === encryptedPassword && storedEmail === email) {
-
-        console.log('User is_admin:', user.is_admin);
-        console.log('id:', user.id_usuario);
 
         const token = jwt.sign({
           id: user.id_usuario,
@@ -149,8 +140,6 @@ router.post('/register', async (req, res) => {
       @password = ${encryptedPassword}, 
       @is_admin = ${is_admin}
     `;
-
-    console.log(req.body);
 
     res.json({ success: true });
   } catch (err) {
