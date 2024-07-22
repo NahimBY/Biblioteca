@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 
 // Configuración de CORS
 app.use(cors({
-  origin: 'https://biblioteca-livid.vercel.app/', // Cambia esto al dominio correcto
+  origin: 'https://biblioteca-ecru.vercel.app/', // Cambia esto al dominio correcto
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
