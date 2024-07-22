@@ -4,9 +4,9 @@ $(document).ready(function () {
   if (token) {
     const decodedToken = jwt_decode(token);
     if (decodedToken && decodedToken.is_admin) {
-      window.location.href = '/admin.html';
+      window.location.href = '../../../views/admin.html';
     } else {
-      window.location.href = '/public/biblioteca.html';
+      window.location.href = '../../../views/biblioteca.html';
     }
   }
 
@@ -45,9 +45,9 @@ $(document).ready(function () {
         localStorage.setItem('token', response.token);
         if (response.success) {
           if (response.is_admin) {
-            window.location.href = '/admin.html';
+            window.location.href = '../../../views/admin.html';
           } else {
-            window.location.href = '/public/biblioteca.html';
+            window.location.href = '../../../views/biblioteca.html';
           }
         } else {
           var messageError = $(".errorNotification");

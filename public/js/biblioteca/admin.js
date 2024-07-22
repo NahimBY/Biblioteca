@@ -6,10 +6,10 @@ $(document).ready(function () {
     const decodedToken = jwt_decode(token);
     if (decodedToken && decodedToken.is_admin) {}
     else {
-      window.location.href = '/public/biblioteca.html';
+      window.location.href = '../../../views/biblioteca.html';
     }
   } else {
-    window.location.href = '/login.html';
+    window.location.href = '../../../views/login.html';
   }
 
 
@@ -208,7 +208,7 @@ $(document).ready(function () {
 
   $('#logout').click(function() {
     localStorage.clear();
-    window.location.href = '../index.html';
+    window.location.href = '../../../views/index.html';
   });
 
 

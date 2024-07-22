@@ -5,12 +5,12 @@ $(document).ready(function(){
     if (token) {
       const decodedToken = jwt_decode(token);
       if (decodedToken && decodedToken.is_admin) {
-        window.location.href = '/admin.html';
+        window.location.href = '../../../views/admin.html';
       } else {
-        window.location.href = '/public/biblioteca.html';
+        window.location.href = '../../../views/biblioteca.html';
       }
     } else {
-      window.location.href = '/login.html';
+      window.location.href = '../../../views/login.html';
     }
   });
 

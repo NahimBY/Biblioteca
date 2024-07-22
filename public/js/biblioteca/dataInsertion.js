@@ -2,7 +2,7 @@ $(document).ready(function () {
 
   const token = localStorage.getItem('token');
   if (!token) {
-    window.location.href = '/login.html';
+    window.location.href = '../../../views/login.html';
   }
 
   const username = localStorage.getItem('userNombre');

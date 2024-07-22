@@ -1,12 +1,18 @@
 const express = require('express');
 const cors = require('cors');
-const { connectToDatabase } = require('./db');
-const routes = require('./routes');
+const { connectToDatabase } = require('./public/js/connection/db');
+const routes = require('./public/js/connection/routes');
 
 const app = express();
 const port = 3000;
 
 const allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5500'];
+
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ type: "*/*" }));
