@@ -27,12 +27,12 @@ if (window.innerWidth >= 1000) {
     $(window).scroll(function () {
       let scroll = getCurrentScroll();
       if (scroll >= shrinkHeader) {
-        $(".vision").css("right", "-17vh");
+        $(".vision").css("left", "30%");
         setTimeout(function () {
           $(".vision").css("opacity", "1");
         }, 20);
       } else {
-        $(".vision").css("right", "-60vh");
+        $(".vision").css("left", "50%");
         setTimeout(function () {
           $(".vision").css("opacity", "0");
         }, 20);
