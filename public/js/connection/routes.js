@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const { sql, config } = require('./db');
 const router = express.Router();
 const bookCoverRouter = require('./bookInfo');
@@ -7,26 +8,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
-
-
-
-router.post('/numPrestamos', async (req, res) => {
-  const { matricula } = req.body;
-
-  try {
-    const pool = await sql.connect(config);
-    const result = await pool.request()
-      .input('matricula', sql.Int, matricula)
-      .execute('numPrestamos');
-
-    res.json({ num_prestamos: result.recordset[0].num_prestamos });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error en el servidor');
-  }
-});
-
-
+const SALT_ROUNDS = 10;
 
 const authenticateToken = (req, res, next) => {
   const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
@@ -43,6 +25,98 @@ const authenticateToken = (req, res, next) => {
     next();
   });
 };
+
+const authorizeAdmin = (req, res, next) => {
+  if (!req.user || !req.user.is_admin) {
+    return res.status(403).json({ success: false, message: 'Acceso denegado' });
+  }
+  next();
+};
+
+
+
+router.post('/login', async (req, res) => {
+  const { matricula, email, password } = req.body;
+
+  try {
+    const result = await sql.query`SELECT * FROM usuarios WHERE matricula = ${matricula}`;
+    if (result.recordset.length > 0) {
+      const user = result.recordset[0];
+
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      console.log( password );
+      console.log( user.password );
+      if (isPasswordValid && user.email === email) {
+        const token = jwt.sign({
+          id: user.id_usuario,
+          matricula: user.matricula,
+          nombre: user.nombre,
+          email: user.email,
+          is_admin: user.is_admin
+        }, JWT_SECRET, { expiresIn: "1h" });
+
+        res.json({ success: true, is_admin: user.is_admin, nombre: user.nombre, email: user.email, token });
+      } else {
+        res.status(401).json({ success: false, message: 'Credenciales incorrectas' });
+      }
+    } else {
+      res.status(401).json({ success: false, message: 'Usuario no encontrado' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error en el servidor');
+  }
+});
+
+
+router.post('/register', async (req, res) => {
+  const { nombre, matricula, email, password } = req.body;
+
+  try {
+    const encryptedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+
+    await sql.query`
+      EXEC nuevoUsuario 
+      @nombre = ${nombre}, 
+      @matricula = ${matricula}, 
+      @email = ${email}, 
+      @password = ${encryptedPassword}, 
+      @is_admin = 0
+    `;
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+
+    if (err.number === 2627 || err.number === 2601) {
+      res.status(400).json({ success: false, message: 'El correo electrónico o la matrícula ya están registrados.' });
+    } else {
+      res.status(500).json({ success: false, message: 'Error en el servidor' });
+    }
+  }
+});
+
+
+
+
+
+
+router.post('/numPrestamos', async (req, res) => {
+  const { matricula } = req.body;
+
+  try {
+    const pool = await sql.connect(config);
+    const result = await pool.request()
+    .input('matricula', sql.Int, matricula)
+    .execute('numPrestamos');
+    
+    res.json({ num_prestamos: result.recordset[0].num_prestamos });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error en el servidor');
+  }
+});
+
 
 router.get('/mostrarPrestamos', authenticateToken, async (req, res) => {
   const { matricula } = req.user;
@@ -87,72 +161,7 @@ router.get('/mostrarTodosLosLibros', async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
-  const { matricula, email, password } = req.body;
 
-  try {
-    // Consulta para verificar las credenciales
-    const result = await sql.query`SELECT * FROM usuarios WHERE matricula = ${matricula}`;
-
-    const encryptedPassword = btoa(password);
-
-    if (result.recordset.length > 0) {
-      const user = result.recordset[0];
-      const storedPassword = user.password;
-      const storedEmail = user.email;
-
-      if (storedPassword === encryptedPassword && storedEmail === email) {
-
-        const token = jwt.sign({
-          id: user.id_usuario,
-          matricula: user.matricula,
-          nombre: user.nombre,
-          email: user.email,
-          is_admin: user.is_admin
-        }, JWT_SECRET, { expiresIn: "1h" });
-
-
-        res.json({ success: true, is_admin: user.is_admin, nombre: user.nombre, email: user.email, token });
-      } else {
-        res.json({ success: false, message: 'Contraseña incorrecta' });
-      }
-    } else {
-      res.json({ success: false, message: 'Usuario no encontrado' });
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error en el servidor');
-  }
-});
-
-router.post('/register', async (req, res) => {
-  const { nombre, matricula, email, password, is_admin } = req.body;
-
-  try {
-
-    const encryptedPassword = btoa(password);
-
-    await sql.query`
-      EXEC nuevoUsuario 
-      @nombre = ${nombre}, 
-      @matricula = ${matricula}, 
-      @email = ${email}, 
-      @password = ${encryptedPassword}, 
-      @is_admin = ${is_admin}
-    `;
-
-    res.json({ success: true });
-  } catch (err) {
-    console.error(err);
-
-    if (err.number === 2627 || err.number === 2601) {
-      // El código de error 2627 corresponde a la violación de la restricción UNIQUE
-      res.status(400).json({ success: false, message: 'El correo electrónico o la matrícula ya están registrados.' });
-    } else {
-      res.status(500).json({ success: false, message: 'Error en el servidor' });
-    }
-  }
-});
 
 
 router.post('/prestamo', async (req, res) => {

@@ -123,7 +123,6 @@ $(document).ready(function () {
     const nombre = $('.nombreRegister').val().toUpperCase();
     const email = $('.emailRegister').val();
     const password = $('.passwordRegister').val();
-    const is_admin = 0;
 
     // Extraer matrícula del email
     const matricula = email.split('@')[0];
@@ -136,8 +135,7 @@ $(document).ready(function () {
       nombre: nombre,
       matricula: matricula,
       email: email,
-      password: password,
-      is_admin: is_admin
+      password: password
     };
 
     // Enviar los datos al servidor
@@ -147,7 +145,6 @@ $(document).ready(function () {
       data: JSON.stringify(registerData),
       contentType: 'application/json',
       success: function (response) {
-        console.log('Response from server:', response); // Para depuración
         if (response.success) {
           
           var message = $(".notification");
