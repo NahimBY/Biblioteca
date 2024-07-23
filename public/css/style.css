@@ -1,6 +1,6 @@
 html {
   scroll-behavior: smooth;
-  scroll-padding: 15.5vh;
+  scroll-padding: 140px;
   overflow-x: hidden;
 }
 
@@ -26,7 +26,7 @@ header {
   background-color: rgba(214, 214, 214, 0.6);
   backdrop-filter: blur(3px);
   width: 100%;
-  height: 10vh;
+  height: 75px;
   transition: 0.2s;
   /*box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.4);*/
 }
@@ -41,9 +41,7 @@ header:hover {
 
 .logo {
   position: relative;
-  align-items: center;
-  text-align: center;
-  top: 0.5vh;
+  top: 3.5px;
   padding-right: 4vh;
   margin-left: 2vh;
 }
@@ -52,7 +50,10 @@ header:hover {
   background-color: rgb(0, 171, 120);
   border-radius: 0 100px 100px 0;
   position: relative;
-  right: 50vh;
+  right: 500px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
   transition: 0.2s ease-in;
 }
 
@@ -79,8 +80,8 @@ ul {
 }
 
 #banner h1:nth-child(1) {
-  top: 30vh;
-  left: 10vh;
+  top: 220px;
+  left: 70px;
   z-index: 51;
   position: absolute;
   align-content: center;
@@ -90,8 +91,8 @@ ul {
 }
 
 #banner h1:nth-child(2) {
-  top: 49vh;
-  left: 15vh;
+  top: 370px;
+  left: 125px;
   z-index: 51;
   position: absolute;
   align-content: center;
@@ -118,7 +119,7 @@ ul {
 #page-down-arrow {
   position: absolute;
   display: inline-block;
-  top: -4.7vh;
+  top: -38px;
   margin-left: -23px;
   border-radius: 10vh 10vh 0 0;
   height: 40px;
@@ -167,7 +168,7 @@ ul {
   opacity: 0;
   transition: opacity 0.1s;
   border-radius: 0px 0px 15px 15px;
-  top: 10vh;
+  top: 75px;
   z-index: 1;
   list-style: none;
 }
@@ -210,7 +211,7 @@ ul {
 /*------- SEARCH BAR ------*/
 
 .container {
-  left: 90px;
+  left: 100px;
   position: relative;
   width: fit-content;
   align-items: center;
@@ -498,7 +499,7 @@ ul {
 .language {
   position: fixed;
   z-index: 99;
-  top: 13vh;
+  top: 110px;
   transition: 0.3s ease;
   display: grid;
   right: 0;
