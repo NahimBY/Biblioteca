@@ -132,8 +132,8 @@ $(document).ready(function () {
               if (cantidadMostrar < 0) {
                 cantidadMostrar = 0; // Ensure quantity is not negative
               }
-              $('.disponibilidad').text(`Disponibles: ${cantidadMostrar}`);
-              $('.prestar').attr('data-cantidad', cantidadMostrar);
+                $('.disponibilidad').text(`Disponibles: ${cantidadMostrar}`);
+                $('.prestar').attr('data-cantidad', cantidadMostrar);
             } else {
               console.log('El libro no está activo.');
             }
@@ -248,18 +248,7 @@ $(document).ready(function () {
                       data: JSON.stringify({ id_libro: idLibro, titulo: title, fecha_inicio: fechaInicio, fecha_devolucion: fechaDevolucion }),
                       success: function (response) {
                         
-                        $.ajax({
-                          url: 'https://biblioteca-x1al.onrender.com/api/mostrarLibrosActivos',
-                          method: 'GET',
-                          success: function (data) {
-                            allRecords = data;
-                            loadTableRecords(allRecords);
-                            paginateRecords(allRecords);
-                          },
-                          error: function (error) {
-                            console.error('Error al obtener los libros Cientifica:', error);
-                          }
-                        });
+                        fetchAndPaginateRecords(); // Actualizar tablas después de préstamo
                         
                         $('.card').addClass('hidden');
                         $('.prestamo-successful').animate({
@@ -560,6 +549,21 @@ $(document).ready(function () {
       console.error('Error al obtener los libros:', error);
     }
   });
+
+  function fetchAndPaginateRecords() {
+    $.ajax({
+      url: 'https://biblioteca-x1al.onrender.com/api/mostrarLibrosActivos',
+      method: 'GET',
+      success: function (data) {
+        allRecords = data;
+        loadTableRecords(allRecords);
+        paginateRecords(allRecords);
+      },
+      error: function (error) {
+        console.error('Error al obtener los libros:', error);
+      }
+    });
+  }
 
   $(document).on('click', '.vistasPanel', function(){
     $.ajax({
