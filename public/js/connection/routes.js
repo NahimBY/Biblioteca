@@ -44,8 +44,6 @@ router.post('/login', async (req, res) => {
       const user = result.recordset[0];
 
       const isPasswordValid = await bcrypt.compare(password, user.password);
-      console.log( password );
-      console.log( user.password );
       if (isPasswordValid && user.email === email) {
         const token = jwt.sign({
           id: user.id_usuario,
